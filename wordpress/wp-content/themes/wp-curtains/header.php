@@ -21,27 +21,77 @@
   <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-<!-- wrapper -->
-<div class="wrapper">
-  <header role="banner">
-    <div class="inner">
 
-      <div class="logo">
-        <?php if ( !is_front_page() && !is_home() ){ ?>
-          <a href="<?php echo home_url(); ?>">
-        <?php } ?>
-            <img src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="<?php wp_title( '' ); ?>" title="<?php wp_title( '' ); ?>" class="logo-img">
-        <?php if ( !is_front_page() && !is_home() ){ ?>
-          </a>
-        <?php } ?>
-      </div><!-- /logo -->
+  <div class="wrapper">
 
-      <nav class="nav" role="navigation">
-        <?php wpeHeadNav(); ?>
-      </nav><!-- /nav -->
+    <header class="header shaddow">
+      <div class="h-top">
+        <div class="container">
+          <div class="row">
 
-    </div><!-- /.inner -->
-  </header><!-- /header -->
+            <div class="col-xs-12 col-sm-4 col-md-5 h-top-logo">
+              <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/h-logo.png" alt="logo"></a>
+            </div><!-- end h-top-logo -->
 
-  <section role="main">
-    <div class="inner">
+            <div class="col-xs-12 col-sm-8 col-md-7 h-top-info lilac">
+              <div class="block block--consult">
+                <a href="#" class="link lilac"><i class="ic ic-chat"></i><span>Консультация <br> дизайнера</span></a>
+              </div>
+              <div class="block block--phones">
+                <i class="ic ic-h_phone"></i>
+                <div class="text">
+                  <p><small>+375 (29)</small> 234-26-51 </p>
+                  <p><small>+375 (29)</small> 234-26-51 </p>
+                </div>
+              </div>
+              <div class="block block--like"><a href="#"><i class="ic ic-heart"></i></a></div>
+            </div><!--  end h-top-info -->
+
+            <div class="clearfix"></div>
+          </div>
+          <div class="descor"></div>
+        </div>
+      </div><!-- end h-top -->
+
+      <div class="h-menu">
+        <div class="container">
+          <div class="row">
+            <div class="hamburger hamburger--elastic">
+              <div class="hamburger-box">
+                <div class="hamburger-inner"></div>
+              </div>
+            </div>
+
+            <ul class="h-menu__list upper phil-reg">
+              <li><a href="/">ГЛАВНАЯ</a></li>
+              <li><a href="#">ПОРТФОЛИО</a></li>
+              <li class="dropdown"><a href="#" data-toggle="dropdown">ТКАНИ</a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                  <li><a href="#">В наличии<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                  <ul class="submenu">
+                    <li><a href="#">Портьеры</a></li>
+                    <li><a href="#">тюли</a></li>
+                    <li><a href="#">Шторы-нити</a></li>
+                  </ul>
+                  </li>
+                  <li><a href="#">ПОд заказ<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                  <ul class="submenu">
+                    <li><a href="#">Шторы-нити</a></li>
+                  </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="#">КАРНИЗЫ</a></li>
+              <li><a href="#">РОЛЬШТОРЫ</a></li>
+              <li><a href="#">жАЛюзи</a></li>
+              <li><a href="#">АКСЕССУАРЫ</a></li>
+              <li><a href="#" class="active">БЛОГ</a></li>
+              <li><a href="#">АКЦИИ</a></li>
+              <li><a href="#">КОНТАКТЫ</a></li>
+            </ul>
+
+          </div>
+        </div>
+      </div><!-- end h-menu -->
+    </header>
+

@@ -1,10 +1,22 @@
 <?php get_header(); ?>
-  <article>
 
-    <h1 class="cat-title inner-title"><?php _e( 'Categories for', 'wpeasy' ); the_category(', '); ?></h1>
+  <section class="blog-page">
+
+    <div class="container">
+      <div class="row">
+        <div class="page-tittle">
+          <h1 class="upper phil-reg"><?php the_category(', '); ?></h1>
+          <div class="breadcrumbs">
+            <?php if (function_exists('easy_breadcrumbs')) easy_breadcrumbs(); ?>
+          </div>
+        </div><!-- end page-tittle -->
+      </div>
+    </div><!--  end container -->
+
     <?php get_template_part('loop'); ?>
+
     <?php get_template_part('pagination'); ?>
 
-  </article>
-<?php get_sidebar(); ?>
+  </section>
+
 <?php get_footer(); ?>

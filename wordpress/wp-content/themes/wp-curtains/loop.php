@@ -1,23 +1,145 @@
-<?php if (have_posts()): while (have_posts()) : the_post(); ?>
-  <div id="post-<?php the_ID(); ?>" <?php post_class('looper'); ?>>
+<?php $i = 1; if (have_posts()): while (have_posts()) : the_post(); ?>
 
-    <a rel="nofollow" class="feature-img" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-      <?php if ( has_post_thumbnail()) { ?>
-        <img src="<?php echo the_post_thumbnail_url('medium'); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
-      <?php } else { ?>
-        <img src="<?php echo catchFirstImage(); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
-      <?php } ?>
-    </a><!-- /post thumbnail -->
+<?php if ( $i == 1 ) { ?>
 
-    <h2 class="inner-title">
-      <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
-    </h2><!-- /post title -->
+  <div id="post-<?php the_ID(); ?>" class="blog-page__block img-left pt-none xs-plr-15">
+    <div class="container">
+      <div class="row">
+        <div class="section-body">
+          <div class="descr visible-sm visible-xs">
+            <div class="tittle lilac phil-reg"><?php the_title(); ?></div>
+            <div class="date gray phil-reg"><?php the_time('j.m.Y'); ?></div>
+          </div>
+          <div class="col-xs-12 col-md-4 nopadding img">
+            <?php if ( has_post_thumbnail()) { ?>
+              <img src="<?php echo the_post_thumbnail_url('medium'); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+            <?php } else { ?>
+              <img src="<?php echo catchFirstImage(); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+            <?php } ?>
+          </div>
+          <div class="col-xs-12 col-md-8 nopadding descr">
+            <div class="descr-head">
+              <div class="tittle lilac phil-reg"><?php the_title(); ?></div>
+              <div class="date gray phil-reg"><?php the_time('j.m.Y'); ?></div>
+            </div>
+            <?php wpeExcerpt('wpeExcerpt120'); ?>
+          </div>
+          <div class="clearfix"></div>
+        </div><!-- end section-body -->
+      </div>
+    </div>
+  </div><!-- end blog-page__block -->
 
-    <span class="date"><?php the_time('j F Y'); ?> <span><?php the_time('G:i'); ?></span></span>
-    <span class="author"><?php _e( 'Published by', 'wpeasy' ); ?> <?php the_author_posts_link(); ?></span>
-    <span class="comments"><?php comments_popup_link( __( 'Leave your thoughts', 'wpeasy' ), __( '1 Comment', 'wpeasy' ), __( '% Comments', 'wpeasy' )); ?></span><!-- /post details -->
+<?php } else if ( $i == 2 ) { ?>
 
-    <?php wpeExcerpt('wpeExcerpt40'); ?>
+  <div id="post-<?php the_ID(); ?>" class="blog-page__block img-right bg-gray-l xs-plr-15">
+    <div class="container">
+      <div class="row">
+        <div class="section-body">
+          <div class="col-xs-12 col-md-8 nopadding descr">
+            <div class="tittle lilac phil-reg"><?php the_title(); ?></div>
+            <div class="date gray phil-reg"><?php the_time('j.m.Y'); ?></div>
+            <?php wpeExcerpt('wpeExcerpt120'); ?>
+          </div>
+          <div class="col-xs-12 col-md-4 nopadding img">
+            <?php if ( has_post_thumbnail()) { ?>
+              <img src="<?php echo the_post_thumbnail_url('medium'); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+            <?php } else { ?>
+              <img src="<?php echo catchFirstImage(); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+            <?php } ?>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <!-- end section-body -->
+      </div>
+    </div>
+  </div><!-- end blog-page__block -->
 
-  </div><!-- /looper -->
-<?php endwhile; endif; ?>
+<?php } else if ( $i == 3 ) { ?>
+
+  <div id="post-<?php the_ID(); ?>" class="blog-page__block img-left xs-plr-15">
+    <div class="container">
+      <div class="row">
+        <div class="section-body">
+          <div class="descr visible-sm visible-xs">
+            <div class="tittle lilac phil-reg"><?php the_title(); ?></div>
+            <div class="date gray phil-reg"><?php the_time('j.m.Y'); ?></div>
+          </div>
+          <div class="col-xs-12 col-md-4 nopadding img">
+            <?php if ( has_post_thumbnail()) { ?>
+              <img src="<?php echo the_post_thumbnail_url('medium'); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+            <?php } else { ?>
+              <img src="<?php echo catchFirstImage(); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+            <?php } ?>
+          </div>
+          <div class="col-xs-12 col-md-8 nopadding descr">
+            <div class="descr-head">
+              <div class="tittle lilac phil-reg"><?php the_title(); ?></div>
+              <div class="date gray phil-reg"><?php the_time('j.m.Y'); ?></div>
+            </div>
+            <?php wpeExcerpt('wpeExcerpt120'); ?>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <!-- end section-body -->
+      </div>
+    </div>
+  </div><!-- end blog-page__block -->
+
+<?php } else if ( $i == 4 || $i == 6 || $i == 8 || $i == 10 ) { ?>
+
+  <div id="post-<?php the_ID(); ?>" class="blog-page__block img-right bg-gray-l xs-plr-15">
+    <div class="container">
+      <div class="row">
+        <div class="section-body">
+          <div class="col-xs-12 col-md-8 nopadding descr">
+            <div class="tittle lilac phil-reg"><?php the_title(); ?></div>
+            <div class="date gray phil-reg"><?php the_time('j.m.Y'); ?></div>
+            <?php wpeExcerpt('wpeExcerpt120'); ?>
+          </div>
+          <div class="col-xs-12 col-md-4 nopadding img">
+            <?php if ( has_post_thumbnail()) { ?>
+              <img src="<?php echo the_post_thumbnail_url('medium'); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+            <?php } else { ?>
+              <img src="<?php echo catchFirstImage(); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+            <?php } ?>
+          </div>
+          <div class="clearfix"></div>
+        </div><!-- end section-body -->
+      </div>
+    </div>
+  </div><!-- end blog-page__block -->
+
+<?php } else { ?>
+
+  <div id="post-<?php the_ID(); ?>" class="blog-page__block img-left xs-plr-15">
+    <div class="container">
+      <div class="row">
+        <div class="section-body">
+          <div class="descr visible-sm visible-xs">
+            <div class="tittle lilac phil-reg"><?php the_title(); ?></div>
+            <div class="date gray phil-reg"><?php the_time('j.m.Y'); ?></div>
+          </div>
+          <div class="col-xs-12 col-md-4 nopadding img">
+            <?php if ( has_post_thumbnail()) { ?>
+              <img src="<?php echo the_post_thumbnail_url('medium'); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+            <?php } else { ?>
+              <img src="<?php echo catchFirstImage(); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+            <?php } ?>
+          </div>
+          <div class="col-xs-12 col-md-8 nopadding descr">
+            <div class="descr-head">
+              <div class="tittle lilac phil-reg"><?php the_title(); ?></div>
+              <div class="date gray phil-reg"><?php the_time('j.m.Y'); ?></div>
+            </div>
+            <?php wpeExcerpt('wpeExcerpt120'); ?>
+          </div>
+          <div class="clearfix"></div>
+        </div><!-- end section-body -->
+      </div>
+    </div>
+  </div><!-- end blog-page__block -->
+
+<?php } ?>
+
+<?php $i++; endwhile; endif; ?>

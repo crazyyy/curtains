@@ -215,6 +215,9 @@ function wpeExcerpt20($length) {
 function wpeExcerpt40($length) {
   return 40;
 }
+function wpeExcerpt120($length) {
+  return 120;
+}
 //  Create the Custom Excerpts callback
 //  RU: Собственная обрезка контента
 function wpeExcerpt($length_callback = '', $more_callback = '') {
@@ -234,13 +237,13 @@ function wpeExcerpt($length_callback = '', $more_callback = '') {
 
 //  Custom View Article link to Post
 //  RU: Добавляем "Читать дальше" к обрезанным записям
-/*
+
 function html5_blank_view_article($more) {
   global $post;
-  return '... <!-- noindex --><a rel="nofollow" class="view-article" href="' . get_permalink($post->ID) . '">' . __('View Article', 'wpeasy') . '</a><!-- /noindex -->';
+  return '...';
 }
 add_filter('excerpt_more', 'html5_blank_view_article'); // Add 'View Article' button instead of [...] for Excerpts
-*/
+
 // Remove the <div> surrounding the dynamic navigation to cleanup markup
 add_filter('wp_nav_menu_args', 'my_wp_nav_menu_args'); // Remove surrounding <div> from WP Navigation
 function my_wp_nav_menu_args($args = '') {
@@ -289,7 +292,9 @@ function html5wp_pagination() {
     'base' => str_replace($big, '%#%', get_pagenum_link($big)),
     'format' => '?paged=%#%',
     'current' => max(1, get_query_var('paged')),
-    'total' => $wp_query->max_num_pages
+    'total' => $wp_query->max_num_pages,
+    'prev_text'          => __('«'),
+    'next_text'          => __('»')
   ));
 }
 
@@ -425,8 +430,8 @@ function easy_breadcrumbs() {
 
   // Settings
   $separator          = ' &raquo; ';
-  $breadcrums_id      = 'breadcrumbs';
-  $breadcrums_class   = 'breadcrumbs';
+  $breadcrums_id      = 'breadcrumbs-in';
+  $breadcrums_class   = 'breadcrumbs-in';
   $home_title         = 'Главная';
 
   // If you have any custom post types with custom taxonomies, put the taxonomy name below (e.g. product_cat)
@@ -443,7 +448,7 @@ function easy_breadcrumbs() {
 
     // Home page
     echo '<li class="item-home"><a class="bread-link bread-home" href="' . get_home_url() . '" title="' . $home_title . '">' . $home_title . '</a></li>';
-    echo '<li class="separator separator-home"> ' . $separator . ' </li>';
+
 
         if ( is_archive() && !is_tax() && !is_category() && !is_tag() ) {
 
@@ -461,7 +466,7 @@ function easy_breadcrumbs() {
                 $post_type_archive = get_post_type_archive_link($post_type);
 
                 echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><a class="bread-cat bread-custom-post-type-' . $post_type . '" href="' . $post_type_archive . '" title="' . $post_type_object->labels->name . '">' . $post_type_object->labels->name . '</a></li>';
-                echo '<li class="separator"> ' . $separator . ' </li>';
+
 
             }
 
@@ -480,7 +485,7 @@ function easy_breadcrumbs() {
                 $post_type_archive = get_post_type_archive_link($post_type);
 
                 echo '<li class="item-cat item-custom-post-type-' . $post_type . '"><a class="bread-cat bread-custom-post-type-' . $post_type . '" href="' . $post_type_archive . '" title="' . $post_type_object->labels->name . '">' . $post_type_object->labels->name . '</a></li>';
-                echo '<li class="separator"> ' . $separator . ' </li>';
+
 
             }
 
@@ -500,7 +505,7 @@ function easy_breadcrumbs() {
                 $cat_display = '';
                 foreach($cat_parents as $parents) {
                     $cat_display .= '<li class="item-cat">'.$parents.'</li>';
-                    $cat_display .= '<li class="separator"> ' . $separator . ' </li>';
+
                 }
 
             }
@@ -526,7 +531,7 @@ function easy_breadcrumbs() {
             } else if(!empty($cat_id)) {
 
                 echo '<li class="item-cat item-cat-' . $cat_id . ' item-cat-' . $cat_nicename . '"><a class="bread-cat bread-cat-' . $cat_id . ' bread-cat-' . $cat_nicename . '" href="' . $cat_link . '" title="' . $cat_name . '">' . $cat_name . '</a></li>';
-                echo '<li class="separator"> ' . $separator . ' </li>';
+
                 echo '<li class="item-current item-' . $post->ID . '"><strong class="bread-current bread-' . $post->ID . '" title="' . get_the_title() . '">' . get_the_title() . '</strong></li>';
 
             } else {
@@ -555,7 +560,7 @@ function easy_breadcrumbs() {
                 if ( !isset( $parents ) ) $parents = null;
                 foreach ( $anc as $ancestor ) {
                     $parents .= '<li class="item-parent item-parent-' . $ancestor . '"><a class="bread-parent bread-parent-' . $ancestor . '" href="' . get_permalink($ancestor) . '" title="' . get_the_title($ancestor) . '">' . get_the_title($ancestor) . '</a></li>';
-                    $parents .= '<li class="separator separator-' . $ancestor . '"> ' . $separator . ' </li>';
+
                 }
 
                 // Display parent pages
@@ -593,11 +598,11 @@ function easy_breadcrumbs() {
 
             // Year link
             echo '<li class="item-year item-year-' . get_the_time('Y') . '"><a class="bread-year bread-year-' . get_the_time('Y') . '" href="' . get_year_link( get_the_time('Y') ) . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ' Archives</a></li>';
-            echo '<li class="separator separator-' . get_the_time('Y') . '"> ' . $separator . ' </li>';
+
 
             // Month link
             echo '<li class="item-month item-month-' . get_the_time('m') . '"><a class="bread-month bread-month-' . get_the_time('m') . '" href="' . get_month_link( get_the_time('Y'), get_the_time('m') ) . '" title="' . get_the_time('M') . '">' . get_the_time('M') . ' Archives</a></li>';
-            echo '<li class="separator separator-' . get_the_time('m') . '"> ' . $separator . ' </li>';
+
 
             // Day display
             echo '<li class="item-current item-' . get_the_time('j') . '"><strong class="bread-current bread-' . get_the_time('j') . '"> ' . get_the_time('jS') . ' ' . get_the_time('M') . ' Archives</strong></li>';
@@ -608,7 +613,7 @@ function easy_breadcrumbs() {
 
             // Year link
             echo '<li class="item-year item-year-' . get_the_time('Y') . '"><a class="bread-year bread-year-' . get_the_time('Y') . '" href="' . get_year_link( get_the_time('Y') ) . '" title="' . get_the_time('Y') . '">' . get_the_time('Y') . ' Archives</a></li>';
-            echo '<li class="separator separator-' . get_the_time('Y') . '"> ' . $separator . ' </li>';
+
 
             // Month display
             echo '<li class="item-month item-month-' . get_the_time('m') . '"><strong class="bread-month bread-month-' . get_the_time('m') . '" title="' . get_the_time('M') . '">' . get_the_time('M') . ' Archives</strong></li>';
