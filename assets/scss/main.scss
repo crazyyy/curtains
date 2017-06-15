@@ -2528,7 +2528,11 @@ p.text:not(:last-of-type) {
     padding: 10px 10px 10px 20px;
   }
 }
-
+.card-product__descr {
+  p {
+    margin-bottom: 18px;
+  }
+}
 .card-product__characters {
   margin-top: 30px;
   .block-tittle {
@@ -2691,6 +2695,7 @@ p.text:not(:last-of-type) {
 
 .category-banner {
   padding: 110px 0;
+  background-size: cover;
 }
 
 .page-tittle {

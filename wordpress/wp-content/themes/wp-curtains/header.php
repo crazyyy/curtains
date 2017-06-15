@@ -67,17 +67,19 @@
               <li><a href="#">ПОРТФОЛИО</a></li>
               <li class="dropdown"><a href="#" data-toggle="dropdown">ТКАНИ</a>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                  <li><a href="#">В наличии<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-                  <ul class="submenu">
-                    <li><a href="#">Портьеры</a></li>
-                    <li><a href="#">тюли</a></li>
-                    <li><a href="#">Шторы-нити</a></li>
-                  </ul>
+                  <li>
+                    <a href="#">В наличии<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                    <ul class="submenu">
+                      <li><a href="#">Портьеры</a></li>
+                      <li><a href="#">тюли</a></li>
+                      <li><a href="#">Шторы-нити</a></li>
+                    </ul>
                   </li>
-                  <li><a href="#">ПОд заказ<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-                  <ul class="submenu">
-                    <li><a href="#">Шторы-нити</a></li>
-                  </ul>
+                  <li>
+                    <a href="#">ПОд заказ<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                    <ul class="submenu">
+                      <li><a href="#">Шторы-нити</a></li>
+                    </ul>
                   </li>
                 </ul>
               </li>
