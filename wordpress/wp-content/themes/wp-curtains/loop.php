@@ -7,7 +7,7 @@
       <div class="row">
         <div class="section-body">
           <div class="descr visible-sm visible-xs">
-            <div class="tittle lilac phil-reg"><?php the_title(); ?></div>
+            <div class="tittle lilac phil-reg"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></div>
             <div class="date gray phil-reg"><?php the_time('j.m.Y'); ?></div>
           </div>
           <div class="col-xs-12 col-md-4 nopadding img">
@@ -19,7 +19,7 @@
           </div>
           <div class="col-xs-12 col-md-8 nopadding descr">
             <div class="descr-head">
-              <div class="tittle lilac phil-reg"><?php the_title(); ?></div>
+              <div class="tittle lilac phil-reg"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></div>
               <div class="date gray phil-reg"><?php the_time('j.m.Y'); ?></div>
             </div>
             <?php wpeExcerpt('wpeExcerpt120'); ?>
@@ -37,7 +37,7 @@
       <div class="row">
         <div class="section-body">
           <div class="col-xs-12 col-md-8 nopadding descr">
-            <div class="tittle lilac phil-reg"><?php the_title(); ?></div>
+            <div class="tittle lilac phil-reg"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></div>
             <div class="date gray phil-reg"><?php the_time('j.m.Y'); ?></div>
             <?php wpeExcerpt('wpeExcerpt120'); ?>
           </div>
@@ -62,7 +62,7 @@
       <div class="row">
         <div class="section-body">
           <div class="descr visible-sm visible-xs">
-            <div class="tittle lilac phil-reg"><?php the_title(); ?></div>
+            <div class="tittle lilac phil-reg"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></div>
             <div class="date gray phil-reg"><?php the_time('j.m.Y'); ?></div>
           </div>
           <div class="col-xs-12 col-md-4 nopadding img">
@@ -74,7 +74,7 @@
           </div>
           <div class="col-xs-12 col-md-8 nopadding descr">
             <div class="descr-head">
-              <div class="tittle lilac phil-reg"><?php the_title(); ?></div>
+              <div class="tittle lilac phil-reg"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></div>
               <div class="date gray phil-reg"><?php the_time('j.m.Y'); ?></div>
             </div>
             <?php wpeExcerpt('wpeExcerpt120'); ?>
@@ -93,7 +93,7 @@
       <div class="row">
         <div class="section-body">
           <div class="col-xs-12 col-md-8 nopadding descr">
-            <div class="tittle lilac phil-reg"><?php the_title(); ?></div>
+            <div class="tittle lilac phil-reg"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></div>
             <div class="date gray phil-reg"><?php the_time('j.m.Y'); ?></div>
             <?php wpeExcerpt('wpeExcerpt120'); ?>
           </div>
@@ -117,7 +117,7 @@
       <div class="row">
         <div class="section-body">
           <div class="descr visible-sm visible-xs">
-            <div class="tittle lilac phil-reg"><?php the_title(); ?></div>
+            <div class="tittle lilac phil-reg"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></div>
             <div class="date gray phil-reg"><?php the_time('j.m.Y'); ?></div>
           </div>
           <div class="col-xs-12 col-md-4 nopadding img">
@@ -129,7 +129,7 @@
           </div>
           <div class="col-xs-12 col-md-8 nopadding descr">
             <div class="descr-head">
-              <div class="tittle lilac phil-reg"><?php the_title(); ?></div>
+              <div class="tittle lilac phil-reg"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></div>
               <div class="date gray phil-reg"><?php the_time('j.m.Y'); ?></div>
             </div>
             <?php wpeExcerpt('wpeExcerpt120'); ?>

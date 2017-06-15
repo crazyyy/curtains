@@ -2252,11 +2252,24 @@ p.text:not(:last-of-type) {
 
     margin-bottom: 10px;
     padding-top: 5px;
+    a {
+      text-decoration: none;
+
+      color: #a1456a;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
   .date {
     font-size: 19px;
 
     margin-bottom: 22px;
+  }
+  p {
+    margin-bottom: 18px;
+    line-height: 1.4;
+    font-size: 22px;
   }
 }
 
@@ -2290,9 +2303,10 @@ p.text:not(:last-of-type) {
       border: 2px solid #a1456a;
     }
     &.current {
+      cursor: default;
+
       color: #a1456a;
-cursor: default;
-            &:hover {
+      &:hover {
         border: 2px solid transparent;
       }
     }
