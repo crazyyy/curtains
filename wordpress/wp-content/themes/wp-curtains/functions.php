@@ -755,7 +755,140 @@ function disable_emojicons_tinymce( $plugins ) {
 }
 
 
+// Add news Post Type
+add_action( 'init', 'post_type_product' );
+function post_type_product() {
 
+  $labels = array(
+    'name'=> 'Продукция',
+    'singular_name' => 'Продукция',
+    'add_new' => 'Add',
+    'add_new_item' => 'Add',
+    'edit' => 'Edit',
+    'edit_item' => 'Edit',
+    'new-item' => 'Add',
+    'view' => 'View',
+    'view_item' => 'View',
+    'search_items' => 'Search',
+    'not_found' => 'Not Found',
+    'not_found_in_trash' => 'Not Found',
+    'parent' => 'Parent',
+  );
+
+  $args = array(
+    'labels'             => $labels,
+    'description' => 'Продукция',
+    'public' => true,
+    'exclude_from_search' => true,
+    'show_ui' => true,
+    'menu_position' => 3,
+    // https://developer.wordpress.org/resource/dashicons/
+    'menu_icon' => 'dashicons-cart',
+    'capability_type' => 'post',
+    'hierarchical' => false,
+    'supports' => array('title','editor','thumbnail'),
+    'rewrite' => array( 'slug' => 'product' ),
+    'show_in_rest' => true
+  );
+
+  register_post_type( 'product' , $args );
+}
+
+
+// hook into the init action and call create_book_taxonomies when it fires
+add_action( 'init', 'taxonomies_category', 0 );
+function taxonomies_category() {
+  // Add new taxonomy, make it hierarchical (like categories)
+  $labels = array(
+    'name'              => 'Рубрики',
+    'singular_name'     => 'Рубрики',
+    'search_items'      => 'Search',
+    'all_items'         => 'All',
+    'parent_item'       => 'Parent',
+    'parent_item_colon' => 'Parent',
+    'edit_item'         => 'Edit',
+    'update_item'       => 'Update',
+    'add_new_item'      => 'Добавить',
+    'new_item_name'     => 'Добавить',
+    'menu_name'         => 'Рубрики',
+  );
+
+  $args = array(
+    'hierarchical'      => true,
+    'labels'            => $labels,
+    'show_ui'           => true,
+    'show_admin_column' => true,
+    'query_var'         => true,
+    'rewrite'           => array( 'slug' => 'categories' ),
+  );
+
+  register_taxonomy( 'categories', array( 'product' ), $args );
+
+  // Add new taxonomy, NOT hierarchical (like tags)
+  $labels = array(
+    'name'                       => 'Характеристики',
+    'singular_name'              => 'Характеристики',
+    'search_items'               => 'Search',
+    'popular_items'              => 'Popular',
+    'all_items'                  => 'All',
+    'parent_item'                => null,
+    'parent_item_colon'          => null,
+    'edit_item'                  => 'Edit',
+    'update_item'                => 'Update',
+    'add_new_item'               => 'Add',
+    'new_item_name'              => 'New',
+    'separate_items_with_commas' => 'Separate items with comas',
+    'add_or_remove_items'        => 'Add or remove',
+    'choose_from_most_used'      => 'Choose from the most used',
+    'not_found'                  => 'No found.',
+    'menu_name'                  => 'Характеристики',
+  );
+
+  $args = array(
+    'hierarchical'          => false,
+    'labels'                => $labels,
+    'show_ui'               => true,
+    'show_admin_column'     => true,
+    'update_count_callback' => '_update_post_term_count',
+    'query_var'             => true,
+    'rewrite'               => array( 'slug' => 'characteristics' ),
+  );
+
+  register_taxonomy( 'characteristics', 'product', $args );
+
+  // Add new taxonomy, NOT hierarchical (like tags)
+  $labels = array(
+    'name'                       => 'Примеры',
+    'singular_name'              => 'Примеры',
+    'search_items'               => 'Search',
+    'popular_items'              => 'Popular',
+    'all_items'                  => 'All',
+    'parent_item'                => null,
+    'parent_item_colon'          => null,
+    'edit_item'                  => 'Edit',
+    'update_item'                => 'Update',
+    'add_new_item'               => 'Add',
+    'new_item_name'              => 'New',
+    'separate_items_with_commas' => 'Separate items with comas',
+    'add_or_remove_items'        => 'Add or remove',
+    'choose_from_most_used'      => 'Choose from the most used',
+    'not_found'                  => 'No found.',
+    'menu_name'                  => 'Примеры',
+  );
+
+  $args = array(
+    'hierarchical'          => false,
+    'labels'                => $labels,
+    'show_ui'               => true,
+    'show_admin_column'     => true,
+    'update_count_callback' => '_update_post_term_count',
+    'query_var'             => true,
+    'rewrite'               => array( 'slug' => 'examples' ),
+  );
+
+  register_taxonomy( 'examples', 'product', $args );
+
+}
 
 
 

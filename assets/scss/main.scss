@@ -2267,9 +2267,10 @@ p.text:not(:last-of-type) {
     margin-bottom: 22px;
   }
   p {
-    margin-bottom: 18px;
-    line-height: 1.4;
     font-size: 22px;
+    line-height: 1.4;
+
+    margin-bottom: 18px;
   }
 }
 
@@ -2542,6 +2543,22 @@ p.text:not(:last-of-type) {
     display: inline-block;
 
     text-align: center;
+    p {
+      max-width: 60px;
+
+      text-align: center;
+    }
+    i {
+      position: relative;
+
+      display: inline-block;
+
+      width: 45px;
+      height: 45px;
+
+      background-repeat: no-repeat;
+      background-position: center;
+    }
     &:not(:last-of-type) {
       margin-right: 40px;
     }
@@ -2558,8 +2575,7 @@ p.text:not(:last-of-type) {
     padding: 20px;
 
     background: #fff;
-    -webkit-box-shadow: 0 0 17.3px .7px rgba(0, 0, 0, .18);
-            box-shadow: 0 0 17.3px .7px rgba(0, 0, 0, .18);
+    box-shadow: 0 0 17.3px .7px rgba(0, 0, 0, .18);
     &:not(:last-of-type) {
       margin-bottom: 25px;
     }
@@ -3634,6 +3650,11 @@ p.text:not(:last-of-type) {
   .slick-next:before {
     font-size: 37px;
     line-height: 37px;
+  }
+}
+.card-product__descr {
+  p {
+    margin-bottom: 10px;
   }
 }
 
