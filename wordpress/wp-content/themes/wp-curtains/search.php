@@ -1,10 +1,19 @@
 <?php get_header(); ?>
-  <article>
 
-    <h1 class="search-title inner-title"><?php echo sprintf( __( '%s Search Results for ', 'wpeasy' ), $wp_query->found_posts ); echo get_search_query(); ?></h1>
+  <section class="blog-page">
+
+    <div class="container">
+      <div class="row">
+        <div class="page-tittle">
+          <h1 class="upper phil-reg"><?php echo sprintf( __( '%s Search Results for ', 'wpeasy' ), $wp_query->found_posts ); echo get_search_query(); ?></h1>
+        </div><!-- end page-tittle -->
+      </div>
+    </div><!--  end container -->
+
     <?php get_template_part('loop'); ?>
+
     <?php get_template_part('pagination'); ?>
 
-  </article>
-<?php get_sidebar(); ?>
+  </section>
+
 <?php get_footer(); ?>
