@@ -543,14 +543,29 @@
           </div>
         </section>
         <!-- end blog -->
-        <div id="map"></div>
 
 
-
-
+    <?php if( have_rows('shops', 265) ): ?>
+      <div id="map">
+        <?php while ( have_rows('shops', 265) ) : the_row(); $location = get_sub_field('maps'); ?>
+          <div class="marker" data-lat="<?php echo $location['lat']; ?>" data-lng="<?php echo $location['lng']; ?>">
+            <div class="infowindow-map">
+              <div class="infowindow-head">
+                <h3 class="upper orange fira-bold"><?php the_sub_field('name'); ?></h3><p><?php echo $location['address']; ?></p>
+              </div>
+              <?php $i = 0; if( have_rows('worktime') ): while( have_rows('worktime') ): the_row(); ?>
+                <?php if ($i == 0) { ?>
+                  <p>Время работы: <?php the_sub_field('days'); ?>: <?php the_sub_field('time'); ?></p>
+                <?php } else { ?>
+                  <p class="lilac"><?php the_sub_field('days'); ?>: <?php the_sub_field('time'); ?></p>
+                <?php } ?>
+              <?php $i++; endwhile; endif; ?>
+            </div>
+          </div>
+        <?php endwhile; ?>
+      </div>
+    <?php endif; ?>
 
   <?php endwhile; endif; ?>
-
-
 
 <?php get_footer(); ?>
