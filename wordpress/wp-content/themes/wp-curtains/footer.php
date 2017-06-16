@@ -117,7 +117,7 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="<?php echo get_template_directory_uri(); ?>/js/slick.min.js"></script>
   <script src="<?php echo get_template_directory_uri(); ?>/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZF31krTQH_5QnEpdIsEgmsBV-Iy884rE"></script>
   <script src="<?php echo get_template_directory_uri(); ?>/js/jquery-ui.min.js"></script>
   <script src="<?php echo get_template_directory_uri(); ?>/js/ekko-lightbox.js"></script>
   <script src="<?php echo get_template_directory_uri(); ?>/js/main.js"></script>
