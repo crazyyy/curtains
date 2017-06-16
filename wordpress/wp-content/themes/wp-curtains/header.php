@@ -30,7 +30,7 @@
           <div class="row">
 
             <div class="col-xs-12 col-sm-4 col-md-5 h-top-logo">
-              <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/h-logo.png" alt="logo"></a>
+              <a href="<?php echo home_url(); ?>"><img src="<?php echo get_template_directory_uri(); ?>/img/h-logo.png" alt="logo"></a>
             </div><!-- end h-top-logo -->
 
             <div class="col-xs-12 col-sm-8 col-md-7 h-top-info lilac">

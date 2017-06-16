@@ -64,6 +64,53 @@
     </div>
   </div>
 </footer>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              </div>
+              <div class="modal-body">
+                <div class="col-xs-12 col-md-5">
+                  <div class="suppliers__head">
+                    <span class="fira-med orange upper">Zafira</span>
+                    <span class="fl-r">Польша</span>
+                  </div>
+                  <div class="suppliers__descr">
+                    <p class="text">Служба Яндекс.Рефераты предназначена для студентов и школьников, дизайнеров и журналистов, создателей научных заявок и отчетов — для всех, кто относится к тексту, как к количеству знаков.</p>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-md-7">
+                  <div class="modal-slider">
+                    <div class="modal-slider__block">
+                      <div class="card-product__img card-product__img--cat">
+                        <a href="#">
+                          <img src="<?php echo get_template_directory_uri(); ?>/img/product/product1.jpg" alt="product">
+                          <span class="num upper fira-bold">M90022</span>
+                        </a>
+                      </div>
+                    </div>
+                    <!-- end modal-slider__block -->
+                    <div class="modal-slider__block">
+                      <div class="card-product__img card-product__img--cat">
+                        <a href="#">
+                          <img src="<?php echo get_template_directory_uri(); ?>/img/product/product1.jpg" alt="product">
+                          <span class="num upper fira-bold">M90022</span>
+                        </a>
+                      </div>
+                    </div>
+                    <!-- end modal-slider__block -->
+                  </div>
+                  <!-- end modal-slider -->
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <!-- end modal-body -->
+            </div>
+          </div>
+        </div>
+        <!-- END Modal -->
 </div>
 
   <?php wp_footer(); ?>
