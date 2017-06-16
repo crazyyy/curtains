@@ -62,35 +62,7 @@
               </div>
             </div>
 
-            <ul class="h-menu__list upper phil-reg">
-              <li><a href="/">ГЛАВНАЯ</a></li>
-              <li><a href="#">ПОРТФОЛИО</a></li>
-              <li class="dropdown"><a href="#" data-toggle="dropdown">ТКАНИ</a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                  <li>
-                    <a href="#">В наличии<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-                    <ul class="submenu">
-                      <li><a href="#">Портьеры</a></li>
-                      <li><a href="#">тюли</a></li>
-                      <li><a href="#">Шторы-нити</a></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a href="#">ПОд заказ<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-                    <ul class="submenu">
-                      <li><a href="#">Шторы-нити</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li><a href="#">КАРНИЗЫ</a></li>
-              <li><a href="#">РОЛЬШТОРЫ</a></li>
-              <li><a href="#">жАЛюзи</a></li>
-              <li><a href="#">АКСЕССУАРЫ</a></li>
-              <li><a href="#" class="active">БЛОГ</a></li>
-              <li><a href="#">АКЦИИ</a></li>
-              <li><a href="#">КОНТАКТЫ</a></li>
-            </ul>
+            <?php wpeHeadNav(); ?>
 
           </div>
         </div>
