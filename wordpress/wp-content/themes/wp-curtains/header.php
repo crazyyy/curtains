@@ -61,9 +61,7 @@
                 <div class="hamburger-inner"></div>
               </div>
             </div>
-
             <?php wpeHeadNav(); ?>
-
           </div>
         </div>
       </div><!-- end h-menu -->

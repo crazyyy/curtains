@@ -1,10 +1,19 @@
 <?php get_header(); ?>
-  <article>
 
-    <h1 class="ctitle"><?php _e( 'Latest Posts', 'wpeasy' ); ?></h1>
+  <section class="blog-page">
+
+    <div class="container">
+      <div class="row">
+        <div class="page-tittle">
+          <h1 class="upper phil-reg"><?php _e( 'Latest Posts', 'wpeasy' ); ?></h1>
+        </div><!-- end page-tittle -->
+      </div>
+    </div><!--  end container -->
+
     <?php get_template_part('loop'); ?>
+
     <?php get_template_part('pagination'); ?>
 
-  </article>
-<?php get_sidebar(); ?>
+  </section>
+
 <?php get_footer(); ?>
