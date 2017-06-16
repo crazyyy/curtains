@@ -890,7 +890,72 @@ function taxonomies_category() {
 
 }
 
+add_action( 'init', 'post_type_accessories' );
+function post_type_accessories() {
 
+  $labels = array(
+    'name'=> 'Аксессуары',
+    'singular_name' => 'Аксессуары',
+    'add_new' => 'Add',
+    'add_new_item' => 'Add',
+    'edit' => 'Edit',
+    'edit_item' => 'Edit',
+    'new-item' => 'Add',
+    'view' => 'View',
+    'view_item' => 'View',
+    'search_items' => 'Search',
+    'not_found' => 'Not Found',
+    'not_found_in_trash' => 'Not Found',
+    'parent' => 'Parent',
+  );
+
+  $args = array(
+    'labels'             => $labels,
+    'description' => 'Аксессуары',
+    'public' => true,
+    'exclude_from_search' => true,
+    'show_ui' => true,
+    'menu_position' => 3,
+    // https://developer.wordpress.org/resource/dashicons/
+    'menu_icon' => 'dashicons-layout',
+    'capability_type' => 'post',
+    'hierarchical' => false,
+    'supports' => array('title','editor','thumbnail'),
+    'rewrite' => array( 'slug' => 'accessories' ),
+    'show_in_rest' => true
+  );
+
+  register_post_type( 'accessories' , $args );
+}
+
+add_action( 'init', 'taxonomies_types', 0 );
+function taxonomies_types() {
+  // Add new taxonomy, make it hierarchical (like categories)
+  $labels = array(
+    'name'              => 'Типы',
+    'singular_name'     => 'Типы',
+    'search_items'      => 'Search',
+    'all_items'         => 'All',
+    'parent_item'       => 'Parent',
+    'parent_item_colon' => 'Parent',
+    'edit_item'         => 'Edit',
+    'update_item'       => 'Update',
+    'add_new_item'      => 'Добавить',
+    'new_item_name'     => 'Добавить',
+    'menu_name'         => 'Типы',
+  );
+
+  $args = array(
+    'hierarchical'      => true,
+    'labels'            => $labels,
+    'show_ui'           => true,
+    'show_admin_column' => true,
+    'query_var'         => true,
+    'rewrite'           => array( 'slug' => 'types' ),
+  );
+
+  register_taxonomy( 'types', array( 'accessories' ), $args );
+}
 
 
 
