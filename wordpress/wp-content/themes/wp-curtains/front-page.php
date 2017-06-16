@@ -5,19 +5,19 @@
 
         <div class="main-promo bg-1">
           <div class="main-promo__link right main-promo__link-1">
-            <a href="#" class="link upper"><span>КАРНИЗЫ</span></a>
+            <a href="<?php echo home_url(); ?>/karnizy.htm" class="link upper"><span>КАРНИЗЫ</span></a>
           </div>
           <!-- end main-promo__link -->
           <div class="main-promo__link left main-promo__link-2">
-            <a href="#" class="link upper"><span>АКСЕССУАРЫ</span></a>
+            <a href="<?php echo home_url(); ?>/aksessuary.htm" class="link upper"><span>АКСЕССУАРЫ</span></a>
           </div>
           <!-- end main-promo__link -->
           <div class="main-promo__link left main-promo__link-3">
-            <a href="#" class="link upper"><span>ТЮЛЬ</span></a>
+            <a href="<?php echo home_url(); ?>/categories/tyuli" class="link upper"><span>ТЮЛЬ</span></a>
           </div>
           <!-- end main-promo__link -->
           <div class="main-promo__link left main-promo__link-4">
-            <a href="#" class="link upper"><span>ПОРТЬЕРА</span></a>
+            <a href="<?php echo home_url(); ?>/categories/portery" class="link upper"><span>ПОРТЬЕРА</span></a>
           </div>
           <!-- end main-promo__link -->
           <div class="container">
@@ -27,7 +27,7 @@
                 <h2 class="upper phil-bold">НА ЗАКАЗ В МИНСКЕ</h2>
                 <img src="<?php echo get_template_directory_uri(); ?>/img/decor.png" alt="decor" class="decor">
                 <div>
-                  <a href="" class="link link-orange upper">ПЕРЕЙТИ В КАТАЛОГ<span class="icon"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                  <a href="<?php echo home_url(); ?>/tkani.htm" class="link link-orange upper">ПЕРЕЙТИ В КАТАЛОГ<span class="icon"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
                 </div>
               </div>
               <div class="clearfix"></div>
@@ -46,7 +46,7 @@
               <div class="section-body">
                 <div class="col-xs-12 col-md-6 nopadding catalog-left">
                   <div class="inner inner--catalog1">
-                    <a href="#" class="upper">
+                    <a href="<?php echo home_url(); ?>/tkani.htm" class="upper">
                       <div class="text">
                         <div class="tittle cream">ТКАНИ</div>
                         <p class="lilac">ПОРТЬЕРЫ</p>
@@ -61,7 +61,7 @@
                   <div class="catalog-right__row">
                     <div class="col-xs-6 nopadding left">
                       <div class="inner inner--catalog2">
-                        <a href="#" class="upper">
+                        <a href="<?php echo home_url(); ?>/karnizy.htm" class="upper">
                           <div class="text">
                             <div class="tittle cream">КАРНИЗЫ</div>
                             <p class="lilac">ВЕРТИКАЛЬНЫЕ</p>
@@ -73,7 +73,7 @@
                     <!-- end left -->
                     <div class="col-xs-6 nopadding right">
                       <div class="inner inner--catalog3">
-                        <a href="#" class="upper">
+                        <a href="<?php echo home_url(); ?>/aksessuary.htm" class="upper">
                           <div class="text">
                             <div class="tittle cream">АКСЕССУАРЫ</div>
                             <p class="lilac">ВЕРТИКАЛЬНЫЕ</p>
@@ -89,7 +89,7 @@
                   <div class="catalog-right__row">
                     <div class="col-xs-6 nopadding left">
                       <div class="inner inner--catalog4">
-                        <a href="#" class="upper">
+                        <a href="<?php echo home_url(); ?>/rolshtory.htm" class="upper">
                           <div class="text">
                             <div class="tittle cream">РОЛЬШТОРЫ</div>
                             <p class="lilac">ВЕРТИКАЛЬНЫЕ</p>
@@ -101,7 +101,7 @@
                     <!-- end left -->
                     <div class="col-xs-6 nopadding right">
                       <div class="inner inner--catalog5">
-                        <a href="#" class="upper">
+                        <a href="<?php echo home_url(); ?>/zhalyuzi.htm" class="upper">
                           <div class="text">
                             <div class="tittle cream">ЖАЛЮЗИ</div>
                             <p class="lilac">ВЕРТИКАЛЬНЫЕ</p>
@@ -442,8 +442,7 @@
                 <div class="col-xs-12 col-md-6 nopadding about-us__descr">
                   <div class="about-us__descr-company">
                     <div class="h3 tittle lilac upper fira-bold">КОМПАНИЯ “ДОМ ШТОР”</div>
-                    <p class="text">Предоставление возможности изготовления обивочных мебельных тканей, тканей для диванов по эскизам тканей для диванов  заказчика и услуги фотореалистичного "переодевания" мебели при разработке дизайна. Предоставление возможности изготовления обивочных мебельных тканей, тканей для диванов по эскизам тканей для диванов  заказчика и услуги фотореалистичного "переодевания" мебели при разработке дизайна.</p>
-                    <p class="text">Предоставление возможности изготовления обивочных мебельных тканей, тканей для диванов по эскизам тканей для диванов  заказчика и услуги фотореалистичного "переодевания" мебели при разработке дизайна.</p>
+                    <?php the_content(); ?>
                   </div>
                   <!-- end about-us__descr-company -->
                   <div class="about-us__descr-plus orange">
@@ -485,57 +484,32 @@
               </div>
               <!-- end section-tittle -->
               <div class="section-body">
-                <div class="col-xs-12 col-sm-6 col-md-4 nopadding blog-block">
-                  <a href="#" class="inner bxsh">
-                    <div class="img">
-                      <img src="<?php echo get_template_directory_uri(); ?>/img/blog/blog1.jpg" alt="blog">
-                      <p class="date"><span>21.09</span></p>
-                    </div>
-                    <div class="bot">
-                      <div class="upper left">ПРОВЕРКА ПУБЛИКАЦИЙ ВЫСТАВКА В МИНСКЕ НА НЕДЕЛЕ МОДЫ</div>
-                      <div class="right">
-                        <i class="fa fa-angle-right sm" aria-hidden="true"></i>
-                        <i class="fa fa-angle-right lg" aria-hidden="true"></i>
-                        <i class="fa fa-angle-right sm" aria-hidden="true"></i>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <!-- end blog-block -->
-                <div class="col-xs-12 col-sm-6 col-md-4 nopadding blog-block">
-                  <a href="#" class="inner bxsh">
-                    <div class="img">
-                      <img src="<?php echo get_template_directory_uri(); ?>/img/blog/blog1.jpg" alt="blog">
-                      <p class="date"><span>21.09</span></p>
-                    </div>
-                    <div class="bot">
-                      <div class="upper left">ПРОВЕРКА ПУБЛИКАЦИЙ ВЫСТАВКА В МИНСКЕ НА НЕДЕЛЕ МОДЫ</div>
-                      <div class="right">
-                        <i class="fa fa-angle-right sm" aria-hidden="true"></i>
-                        <i class="fa fa-angle-right lg" aria-hidden="true"></i>
-                        <i class="fa fa-angle-right sm" aria-hidden="true"></i>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <!-- end blog-block -->
-                <div class="col-xs-12 col-sm-6 col-md-4 nopadding blog-block">
-                  <a href="#" class="inner bxsh">
-                    <div class="img">
-                      <img src="<?php echo get_template_directory_uri(); ?>/img/blog/blog1.jpg" alt="blog">
-                      <p class="date"><span>21.09</span></p>
-                    </div>
-                    <div class="bot">
-                      <div class="upper left">ПРОВЕРКА ПУБЛИКАЦИЙ ВЫСТАВКА В МИНСКЕ НА НЕДЕЛЕ МОДЫ</div>
-                      <div class="right">
-                        <i class="fa fa-angle-right sm" aria-hidden="true"></i>
-                        <i class="fa fa-angle-right lg" aria-hidden="true"></i>
-                        <i class="fa fa-angle-right sm" aria-hidden="true"></i>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <!-- end blog-block -->
+
+                <?php query_posts("showposts=3"); ?>
+                  <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+                    <div class="col-xs-12 col-sm-6 col-md-4 nopadding blog-block">
+                      <a href="<?php the_permalink(); ?>" class="inner bxsh">
+                        <div class="img">
+                          <?php if ( has_post_thumbnail()) { ?>
+                            <img src="<?php echo the_post_thumbnail_url('medium'); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+                          <?php } else { ?>
+                            <img src="<?php echo catchFirstImage(); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+                          <?php } ?>
+                          <p class="date"><span><?php the_time('j.m'); ?></span></p>
+                        </div>
+                        <div class="bot">
+                          <div class="upper left"><?php the_title(); ?></div>
+                          <div class="right">
+                            <i class="fa fa-angle-right sm" aria-hidden="true"></i>
+                            <i class="fa fa-angle-right lg" aria-hidden="true"></i>
+                            <i class="fa fa-angle-right sm" aria-hidden="true"></i>
+                          </div>
+                        </div>
+                      </a>
+                    </div><!-- end blog-block -->
+                  <?php endwhile; endif; ?>
+                <?php wp_reset_query(); ?>
+
                 <div class="clearfix"></div>
               </div>
               <!-- end section-body -->
