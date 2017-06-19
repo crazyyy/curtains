@@ -957,6 +957,73 @@ function taxonomies_types() {
   register_taxonomy( 'types', array( 'accessories' ), $args );
 }
 
+add_action( 'init', 'post_type_eaves' );
+function post_type_eaves() {
+
+  $labels = array(
+    'name'=> 'Карнизы',
+    'singular_name' => 'Карнизы',
+    'add_new' => 'Add',
+    'add_new_item' => 'Add',
+    'edit' => 'Edit',
+    'edit_item' => 'Edit',
+    'new-item' => 'Add',
+    'view' => 'View',
+    'view_item' => 'View',
+    'search_items' => 'Search',
+    'not_found' => 'Not Found',
+    'not_found_in_trash' => 'Not Found',
+    'parent' => 'Parent',
+  );
+
+  $args = array(
+    'labels' => $labels,
+    'description' => 'Карнизы',
+    'public' => true,
+    'exclude_from_search' => true,
+    'show_ui' => true,
+    'menu_position' => 3,
+    // https://developer.wordpress.org/resource/dashicons/
+    'menu_icon' => 'dashicons-feedback',
+    'capability_type' => 'post',
+    'hierarchical' => false,
+    'supports' => array('title','editor','thumbnail'),
+    'rewrite' => array( 'slug' => 'eaves' ),
+    'show_in_rest' => true
+  );
+
+  register_post_type( 'eaves' , $args );
+}
+
+add_action( 'init', 'taxonomies_variant', 0 );
+function taxonomies_variant() {
+  // Add new taxonomy, make it hierarchical (like categories)
+  $labels = array(
+    'name'              => 'Типы',
+    'singular_name'     => 'Типы',
+    'search_items'      => 'Search',
+    'all_items'         => 'All',
+    'parent_item'       => 'Parent',
+    'parent_item_colon' => 'Parent',
+    'edit_item'         => 'Edit',
+    'update_item'       => 'Update',
+    'add_new_item'      => 'Добавить',
+    'new_item_name'     => 'Добавить',
+    'menu_name'         => 'Типы',
+  );
+
+  $args = array(
+    'hierarchical'      => true,
+    'labels'            => $labels,
+    'show_ui'           => true,
+    'show_admin_column' => true,
+    'query_var'         => true,
+    'rewrite'           => array( 'slug' => 'variant' ),
+  );
+
+  register_taxonomy( 'variant', array( 'eaves' ), $args );
+}
+
 
 
 ?>
