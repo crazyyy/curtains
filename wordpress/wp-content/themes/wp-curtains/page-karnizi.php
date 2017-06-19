@@ -3,7 +3,6 @@
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
     <main>
-
       <section class="karnizi-page xs-plr-15">
         <div class="container">
           <div class="row">
@@ -32,255 +31,69 @@
 
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs ta-l">
-                  <li class="active"><a href="#tab-karnizi1" data-toggle="tab">Вид профиля</a></li>
-                  <li><a href="#tab-karnizi2" data-toggle="tab">КРОНШТЕЙНЫ</a></li>
-                  <li><a href="#tab-karnizi3" data-toggle="tab">ФУРНИТУРА МЕТАЛЛИЧЕСКАЯ</a></li>
-                  <li><a href="#tab-karnizi4" data-toggle="tab">НАКОНЕЧНИКИ МЕТАЛЛИЧЕСКИЕ</a></li>
-                </ul><!-- Nav tabs content -->
+                  <li><a class="disabled" href="#" data-toggle="tab">Вид профиля:</a></li>
+                  <?php $wcatTerms = get_terms('variant', array('hide_empty' => 0, 'parent' =>0)); $i = 1; foreach($wcatTerms as $wcatTerm) : ?>
+                    <?php if ($i == 1) { $class = ' class="active"'; } else { $class = ''; } ?>
+                    <li <?php echo $class; ?>><a href="#tab-karnizi<?php echo $i; ?>" data-toggle="tab"><?php echo $wcatTerm->name; ?></a></li>
+                  <?php $i++; endforeach; ?>
+                </ul>
 
+                <!-- Nav tabs content -->
                 <div class="tab-content">
+                  <?php $wcatTerms = get_terms('variant', array('hide_empty' => 0, 'parent' =>0)); $i = 1; foreach($wcatTerms as $wcatTerm) : ?>
+                    <?php if ($i == 1) { $class = 'tab-pane fade in active'; } else { $class = 'tab-pane fade'; } ?>
 
-                  <div class="tab-pane fade in active" id="tab-karnizi1">
+                  <div class="<?php echo $class; ?>" id="tab-karnizi<?php echo $i; ?>">
 
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div><!-- end karnizi-type__block -->
+                    <?php
+                      $n = 1;
+                      $args = array(
+                      'post_type' => 'eaves',
+                      'showposts' => 100,
+                      'tax_query' => array(
+                        array (
+                          'taxonomy' => 'variant',
+                          'field' => 'slug',
+                          'terms' => $wcatTerm->slug
+                          )
+                        ),
+                      );
+                        // The Loop
+                        $news_secondary_query = new WP_Query( $args );
+                        while ( $news_secondary_query->have_posts() ) :
+                          $news_secondary_query->the_post();
 
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
+                      ?>
+
+                        <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block" data-id="<?php the_ID(); ?>">
+                          <a href="#" data-toggle="modal" data-target="#modal_eaves">
+                            <?php if ( has_post_thumbnail()) { ?>
+                              <img src="<?php echo the_post_thumbnail_url('small'); ?>" data-image="<?php echo the_post_thumbnail_url('medium'); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+                            <?php } else { ?>
+                              <img src="<?php echo catchFirstImage(); ?>" data-image="<?php echo catchFirstImage(); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+                            <?php } ?>
+                            <span class="orange fira-bold karnizi--title"><?php the_title(); ?></span>
+                          </a>
+                          <div class="karnizi-type__block-additional">
+                            <ul>
+                              <?php $color_list = wp_get_post_terms($post->ID, 'colour'); ?>
+                              <?php foreach ($color_list as $color) { ?>
+                                <li class="eaves-colors" data-color="<?php the_field('colours', $color); ?>"><?php echo $color->name; ?></li>
+                              <?php } ?>
+                            </ul>
+                            <span class="country"><?php $term_list = wp_get_post_terms($post->ID, 'country', array("fields" => "names")); echo $term_list[0]; ?></span>
+                            <span class="width"><?php the_field('width'); ?></span>
+                            <span class="diametr"><?php the_field('diametr'); ?></span>
+                          </div><!-- /.karnizi-type__block-additional -->
+                        </div><!-- end karnizi-type__block -->
+
+                      <?php $n++; endwhile; wp_reset_postdata(); ?>
+
                     <div class="clearfix"></div>
                   </div><!-- end tab-karnizi1 -->
 
-                  <div class="tab-pane fade" id="tab-karnizi2">
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="clearfix"></div>
-                  </div>
-                  <!-- end tab-karnizi2 -->
-                  <div class="tab-pane fade" id="tab-karnizi3">
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="clearfix"></div>
-                  </div>
-                  <!-- end tab-karnizi3 -->
-                  <div class="tab-pane fade" id="tab-karnizi4">
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="col-xs-6 col-sm-4 col-md-3 karnizi-type__block">
-                      <a href="">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1.jpg" alt="model">
-                        <span class="orange fira-bold">Гладкая</span>
-                      </a>
-                    </div>
-                    <!-- end karnizi-type__block -->
-                    <div class="clearfix"></div>
-                  </div>
-                  <!-- end tab-karnizi4 -->
+                  <?php $i++; endforeach; ?>
+
                 </div>
                 <?php the_content(); ?>
               </div><!-- end karnizi-type -->
@@ -353,8 +166,6 @@
       <?php get_template_part('includes/formcallback'); ?>
 
     </main>
-
   <?php endwhile; endif; ?>
-
 
 <?php get_footer(); ?>

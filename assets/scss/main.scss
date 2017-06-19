@@ -3209,6 +3209,9 @@ p.text:not(:last-of-type) {
     position: relative;
 
     display: block;
+    overflow: hidden;
+
+    height: 180px;
 
     transition: .4s;
 
@@ -3217,6 +3220,9 @@ p.text:not(:last-of-type) {
       box-shadow: 0 0 13px rgba(0, 0, 0, .3);
     }
   }
+  .karnizi-type__block-additional {
+    display: none;
+  }
   span {
     font-size: 18px;
 
@@ -3224,8 +3230,13 @@ p.text:not(:last-of-type) {
     bottom: 13px;
     left: 13px;
   }
+  img {
+    width: 100%;
+  }
 }
-
+.disabled {
+  cursor: default;
+}
 .karnizi-type .tab-content {
   margin: 0 -11px;
 }
@@ -3302,9 +3313,6 @@ p.text:not(:last-of-type) {
   text-align: right;
 }
 
-.karnizi-type__block img {
-  width: 100%;
-}
 
 /*________2.9 pod zakaz page ______________*/
 
@@ -3337,17 +3345,87 @@ p.text:not(:last-of-type) {
 
 .modal-content {
   border-radius: 0;
-}
+  .modal-header {
+    font-size: 28px;
 
-.modal-header {
-  border-bottom: none;
-  .close {
-    font-size: 50px;
-    line-height: 20px;
+    border-bottom: none;
+    .close {
+      font-size: 50px;
+      font-weight: 400;
+      line-height: 20px;
 
-    opacity: .7;
+      opacity: .7;
+    }
+    .modal-header .tittle {
+      display: inline-block;
+
+      padding-top: 10px;
+    }
+  }
+  .modal-body {
+    position: relative;
+
+    padding: 15px;
+    .karnizi-type__modal-descr {
+      display: table;
+
+      width: 100%;
+      padding: 0 0 25px;
+      .left {
+        width: 1%;
+        padding-right: 44px;
+
+        text-align: right;
+      }
+      .row {
+        display: table-row;
+        > div {
+          display: table-cell;
+
+          padding-bottom: 15px;
+
+          vertical-align: top;
+        }
+      }
+    }
+    .karnizi-type__modal-color {
+      display: inline-block;
+
+      margin-bottom: 7px;
+
+      text-align: center;
+      &:not(:last-of-type) {
+        margin-right: 18px;
+      }
+      .color {
+        display: inline-block;
+
+        width: 43px;
+        height: 43px;
+        margin-bottom: 7px;
+
+        border-radius: 50%;
+      }
+    }
+  }
+  .color--1 {
+    background: #984b4b;
+  }
+  .color--2 {
+    background: #81a121;
+  }
+  .color--3 {
+    background: #cdaf85;
+  }
+  .karnizi-type__modal-img {
+
+    img {
+width: 100%;
+    }
   }
 }
+
+
 
 .suppliers__head {
   margin-bottom: 15px;

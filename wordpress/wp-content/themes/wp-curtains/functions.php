@@ -999,8 +999,8 @@ add_action( 'init', 'taxonomies_variant', 0 );
 function taxonomies_variant() {
   // Add new taxonomy, make it hierarchical (like categories)
   $labels = array(
-    'name'              => 'Типы',
-    'singular_name'     => 'Типы',
+    'name'              => 'Варианты',
+    'singular_name'     => 'Варианты',
     'search_items'      => 'Search',
     'all_items'         => 'All',
     'parent_item'       => 'Parent',
@@ -1009,7 +1009,7 @@ function taxonomies_variant() {
     'update_item'       => 'Update',
     'add_new_item'      => 'Добавить',
     'new_item_name'     => 'Добавить',
-    'menu_name'         => 'Типы',
+    'menu_name'         => 'Варианты',
   );
 
   $args = array(
@@ -1022,6 +1022,64 @@ function taxonomies_variant() {
   );
 
   register_taxonomy( 'variant', array( 'eaves' ), $args );
+}
+
+add_action( 'init', 'taxonomies_colours', 0 );
+function taxonomies_colours() {
+  // Add new taxonomy, make it hierarchical (like categories)
+  $labels = array(
+    'name'              => 'Цвет',
+    'singular_name'     => 'Цвет',
+    'search_items'      => 'Search',
+    'all_items'         => 'All',
+    'parent_item'       => 'Parent',
+    'parent_item_colon' => 'Parent',
+    'edit_item'         => 'Edit',
+    'update_item'       => 'Update',
+    'add_new_item'      => 'Добавить',
+    'new_item_name'     => 'Добавить',
+    'menu_name'         => 'Цвет',
+  );
+
+  $args = array(
+    'hierarchical'      => true,
+    'labels'            => $labels,
+    'show_ui'           => true,
+    'show_admin_column' => true,
+    'query_var'         => true,
+    'rewrite'           => array( 'slug' => 'colour' ),
+  );
+
+  register_taxonomy( 'colour', array( 'eaves' ), $args );
+}
+
+add_action( 'init', 'taxonomies_country', 0 );
+function taxonomies_country() {
+  // Add new taxonomy, make it hierarchical (like categories)
+  $labels = array(
+    'name'              => 'Страна',
+    'singular_name'     => 'Страна',
+    'search_items'      => 'Search',
+    'all_items'         => 'All',
+    'parent_item'       => 'Parent',
+    'parent_item_colon' => 'Parent',
+    'edit_item'         => 'Edit',
+    'update_item'       => 'Update',
+    'add_new_item'      => 'Добавить',
+    'new_item_name'     => 'Добавить',
+    'menu_name'         => 'Страна',
+  );
+
+  $args = array(
+    'hierarchical'      => true,
+    'labels'            => $labels,
+    'show_ui'           => true,
+    'show_admin_column' => true,
+    'query_var'         => true,
+    'rewrite'           => array( 'slug' => 'country' ),
+  );
+
+  register_taxonomy( 'country', array( 'eaves' ), $args );
 }
 
 

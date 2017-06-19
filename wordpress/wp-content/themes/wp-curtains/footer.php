@@ -64,53 +64,66 @@
       </div>
     </div>
   </footer>
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+
+  <div class="modal fade" id="modal_eaves" tabindex="-1" role="dialog" aria-labelledby="modal_eaves" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
+          <span class="fira-bold orange upper tittle">ПРОФИЛЬ</span>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         </div>
         <div class="modal-body">
-          <div class="col-xs-12 col-md-5">
-            <div class="suppliers__head">
-              <span class="fira-med orange upper">Zafira</span>
-              <span class="fl-r">Польша</span>
+          <div class="karnizi-type__modal-descr">
+            <div class="row">
+              <div class="left upper">НАЗВАНИЕ:</div>
+              <div class="right fira-bold upper modal-titles">ПРОФИЛЬ ГЛАДКИЙ</div>
             </div>
-            <div class="suppliers__descr">
-              <p class="text">Служба Яндекс.Рефераты предназначена для студентов и школьников, дизайнеров и журналистов, создателей научных заявок и отчетов — для всех, кто относится к тексту, как к количеству знаков.</p>
-            </div>
-          </div>
-          <div class="col-xs-12 col-md-7">
-            <div class="modal-slider">
-              <div class="modal-slider__block">
-                <div class="card-product__img card-product__img--cat">
-                  <a href="#">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/product/product1.jpg" alt="product">
-                    <span class="num upper fira-bold">M90022</span>
-                  </a>
+            <!-- end row -->
+            <div class="row">
+              <div class="left upper">ЦВЕТА:</div>
+              <div class="right upper modal-colors">
+                <div class="karnizi-type__modal-color">
+                  <div class="color color--1"></div>
+                  <p>КРАСНЫЙ</p>
+                </div>
+                <div class="karnizi-type__modal-color">
+                <div class="color color--2"></div>
+                  <p>ЗЕЛЕНЫЙ</p>
+                </div>
+                <div class="karnizi-type__modal-color">
+                  <div class="color color--3"></div>
+                  <p>БЕЖЕВЫЙ</p>
                 </div>
               </div>
-              <!-- end modal-slider__block -->
-              <div class="modal-slider__block">
-                <div class="card-product__img card-product__img--cat">
-                  <a href="#">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/product/product1.jpg" alt="product">
-                    <span class="num upper fira-bold">M90022</span>
-                  </a>
-                </div>
-              </div>
-              <!-- end modal-slider__block -->
             </div>
-            <!-- end modal-slider -->
+            <!-- end row -->
+            <div class="row">
+              <div class="left upper">ДЛИНА:</div>
+              <div class="right fira-bold modal-width"><span>230</span>см</div>
+            </div>
+            <!-- end row -->
+            <div class="row">
+              <div class="left upper">ДИАМЕТР:</div>
+              <div class="right fira-bold modal-diametr"><span>12</span>см</div>
+            </div>
+            <!-- end row -->
+            <div class="row">
+              <div class="left upper">ПРОИЗВОДСТВО:</div>
+              <div class="right fira-bold upper modal-country">БЕЛЬГИЯ</div>
+            </div>
+            <!-- end row -->
           </div>
-          <div class="clearfix"></div>
+          <!-- end karnizi-type__modal-descr -->
+          <div class="karnizi-type__modal-img">
+            <img class="modal-image" src="img/karnizi/model1-lg.jpg" alt="karniz">
+          </div>
         </div>
         <!-- end modal-body -->
       </div>
     </div>
-  </div>
-  <!-- END Modal -->
+  </div><!-- END Modal -->
+
 </div>
 
   <?php wp_footer(); ?>
