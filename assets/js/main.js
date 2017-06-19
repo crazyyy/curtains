@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  /* modal window on evaves page*/
   $('.karnizi-type__block a').on('click', function(e) {
     var $parent = $(this).parent();
     $parent.addClass('current-modal-container');
@@ -25,6 +26,40 @@ $(document).ready(function() {
     $('.current-modal-container').removeClass('current-modal-container')
       // $('#modal_eaves .karnizi-type__modal-descr .upper').html('verstala pidarala')
   })
+
+  if ($('body').hasClass('page-template-page-zhaluzi')) {
+    /* set active shutter on shutter page */
+    var location = $('.filter-1.active').attr('data-slug');
+    var rendering = $('.filter-2.active').attr('data-slug');
+    var selector = '.' + location + '_' + rendering;
+    $('.zhaluzi-card--active').removeClass('zhaluzi-card--active');
+    $(selector).addClass('zhaluzi-card--active');
+    /* end setting */
+
+    $('.filter-1').on('click', function(e) {
+      if (!$(this).hasClass('active')) {
+        var location = $(this).attr('data-slug');
+        var rendering = $('.filter-2.active').attr('data-slug');
+        var selector = '.' + location + '_' + rendering;
+        $('.zhaluzi-card--active').removeClass('zhaluzi-card--active');
+        $(selector).addClass('zhaluzi-card--active');
+      }
+    })
+
+    $('.filter-2').on('click', function(e) {
+      if (!$(this).hasClass('active')) {
+        var location = $('.filter-1.active').attr('data-slug');
+        var rendering = $(this).attr('data-slug');
+        var selector = '.' + location + '_' + rendering;
+        $('.zhaluzi-card--active').removeClass('zhaluzi-card--active');
+        $(selector).addClass('zhaluzi-card--active');
+      }
+    })
+
+
+  }
+
+
   $('.disabled').on('click', function(e) {
       e.preventDefault();
     })
@@ -84,8 +119,118 @@ $(document).ready(function() {
     $(".karnizi-sliders__slider").slick();
   };
   //materials-slider
-  if ($(".materials-slider")) {
-    $(".materials-slider").slick({
+  if ($(".materials-slider-1")) {
+    $(".materials-slider-1").slick({
+      slidesToShow: 5,
+      slidesToScroll: 2,
+      responsive: [{
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4
+        }
+      }, {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3
+        }
+      }, {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2
+        }
+      }]
+    });
+  };
+  if ($(".materials-slider-2")) {
+    $(".materials-slider-2").slick({
+      slidesToShow: 5,
+      slidesToScroll: 2,
+      responsive: [{
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4
+        }
+      }, {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3
+        }
+      }, {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2
+        }
+      }]
+    });
+  };
+  if ($(".materials-slider-3")) {
+    $(".materials-slider-3").slick({
+      slidesToShow: 5,
+      slidesToScroll: 2,
+      responsive: [{
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4
+        }
+      }, {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3
+        }
+      }, {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2
+        }
+      }]
+    });
+  };
+  if ($(".materials-slider-4")) {
+    $(".materials-slider-4").slick({
+      slidesToShow: 5,
+      slidesToScroll: 2,
+      responsive: [{
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4
+        }
+      }, {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3
+        }
+      }, {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2
+        }
+      }]
+    });
+  };
+  if ($(".materials-slider-5")) {
+    $(".materials-slider-5").slick({
+      slidesToShow: 5,
+      slidesToScroll: 2,
+      responsive: [{
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4
+        }
+      }, {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3
+        }
+      }, {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2
+        }
+      }]
+    });
+  };
+  if ($(".materials-slider-6")) {
+    $(".materials-slider-6").slick({
       slidesToShow: 5,
       slidesToScroll: 2,
       responsive: [{

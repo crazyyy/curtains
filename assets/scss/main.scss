@@ -3418,9 +3418,8 @@ p.text:not(:last-of-type) {
     background: #cdaf85;
   }
   .karnizi-type__modal-img {
-
     img {
-width: 100%;
+      width: 100%;
     }
   }
 }
@@ -3575,8 +3574,7 @@ width: 100%;
   &.active {
     color: #fff;
     background-color: #d99f28;
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
 }
 
@@ -3595,16 +3593,26 @@ width: 100%;
 }
 
 .zhaluzi-info {
+  column-count: 2;
+  column-gap: 40px;
   .left {
     padding-right: 20px;
   }
   .right {
     padding-left: 20px;
   }
+  p {
+    margin-bottom: 15px;
+  }
 }
 
 .zhaluzi-card {
+  display: none;
+
   margin-bottom: 65px;
+  &.zhaluzi-card--active {
+    display: block;
+  }
 }
 
 .filter-orange {
@@ -3691,6 +3699,12 @@ width: 100%;
       position: absolute;
       top: 0;
       left: 0;
+
+      width: 60px;
+      height: 60px;
+
+      background-repeat: no-repeat;
+      background-position: center;
     }
     p {
       width: 100px;
@@ -3733,7 +3747,14 @@ width: 100%;
   background: #d2cbb0;
 }
 
-.materials-slider {
+.materials-slider-1,
+.materials-slider-2,
+.materials-slider-3,
+.materials-slider-4,
+.materials-slider-5,
+.materials-slider-6,
+.materials-slider-7,
+.materials-slider{
   .slick-prev:before,
   .slick-next:before {
     font-size: 37px;

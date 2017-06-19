@@ -3,7 +3,6 @@
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
     <main>
-
       <section class="zhaluzi xs-plr-15">
         <div class="container">
           <div class="row">
@@ -17,104 +16,103 @@
 
             <div class="section-body">
               <div class="filter-orange upper">
+
                 <div class="col-xs-12 col-lg-5 nopadding">
                   <span class="phil-reg">РАСПОЛОЖЕНИЕ:</span>
-                  <a href="#" class="btn btn-orange-f filter-1">ВЕРТИКАЛЬНОЕ</a>
-                  <a href="#" class="btn btn-orange-f filter-1">ГОРИЗОНТАЛЬНОЕ</a>
+                  <?php $wcatTerms = get_terms('location', array('hide_empty' => 0, 'parent' =>0)); $i = 1; foreach($wcatTerms as $wcatTerm) : ?>
+                    <?php if ($i == 1) { $class = 'active"'; } else { $class = ''; } ?>
+                    <a href="#" class="btn btn-orange-f filter-1 <?php echo $class; ?>" data-slug="<?php echo $wcatTerm->slug; ?>"><?php echo $wcatTerm->name; ?></a>
+                  <?php $i++; endforeach; ?>
                 </div>
+
                 <div class="col-xs-12 col-lg-7 nopadding">
                   <span class="phil-reg">ИСПОЛНЕНИЕ:</span>
-                  <a href="#" class="btn btn-orange-f filter-2">АРОЧНОЕ</a>
-                  <a href="#" class="btn btn-orange-f filter-2">ТКАНЬ</a>
-                  <a href="#" class="btn btn-orange-f filter-2">МУЛЬТИ</a>
+                  <?php $wcatTerms = get_terms('rendering', array('hide_empty' => 0, 'parent' =>0)); $i = 1; foreach($wcatTerms as $wcatTerm) : ?>
+                    <?php if ($i == 1) { $class = 'active"'; } else { $class = ''; } ?>
+                    <a href="#" class="btn btn-orange-f filter-2 <?php echo $class; ?>" data-slug="<?php echo $wcatTerm->slug; ?>"><?php echo $wcatTerm->name; ?></a>
+                  <?php $i++; endforeach; ?>
                 </div>
                 <div class="clearfix"></div>
               </div>
               <!-- end filter-orange -->
-              <div class="zhaluzi-card">
-                <div class="col-xs-12 col-sm-5 col-lg-5 nopadding zhaluzi-card-img">
-                  <img src="<?php echo get_template_directory_uri(); ?>/img/zhaluzi/1.jpg" alt="zhaluzi">
-                  <div class="zhaluzi-card-img__price upper phil-bold">
-                    <div class="left lilac">от <span>1</span> дня</div>
-                    <div class="right orange">от <span>920</span> BYN</div>
-                  </div>
-                  <a href="#" class="btn btn-gallery fira-bold"><i class="ic ic-gal"></i><span>ГАЛЕРЕЯ ВЫПОЛНЕННЫХ РАБОТ</span></a>
-                </div>
-                <!-- end zhaluzi-card-img -->
-                <div class="col-xs-12 col-sm-7 col-lg-7 nopadding zhaluzi-card-descr">
-                  <h2 class="block-tittle fira-bold upper">ВЕРТИКАЛЬНЫЕ АРОЧНЫЕ ЖАЛЮЗИ</h2>
-                  <div class="block">
-                    <div class="block-tittle-sm upper">КОНСТРУКЦИЯ:</div>
-                    <p class="text">Служба Яндекс.Рефераты предназначена для студентов и школьников, дизайнеров и журналистов, создателей научных заявок и отчетов — для всех, кто относится к тексту, как к количеству знаков.</p>
-                    <p class="text">Нажав на кнопку «Написать реферат», вы лично создаете уникальный текст, причем именно от вашего нажатия на кнопку зависит, какой именно текст получится — таким образом, авторские права на реферат принадлежат только вам.</p>
-                  </div>
-                  <!-- end block -->
-                  <div class="block">
-                    <div class="block-tittle-sm upper">ПРИНЦИП РАБОТЫ:</div>
-                    <p class="text">Служба Яндекс.Рефераты предназначена для студентов и школьников, дизайнеров и журналистов, создателей научных заявок и отчетов — для всех, кто относится к тексту, как к количеству знаков.</p>
-                  </div>
-                  <!-- end block -->
-                  <div class="block">
-                    <div class="block-tittle-sm upper">ОСОБЕННОСТИ:</div>
-                    <div class="block-inline">
-                      <i class="ic ic-sun"></i>
-                      <p>Защита от яркого света</p>
+
+              <?php query_posts("showposts=12&post_type=shutter"); ?>
+              <?php $n = 1; if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+                <?php if ($n == 1) { $class = 'zhaluzi-card--active'; } else { $class = ''; } ?>
+
+                <?php $location = wp_get_post_terms($post->ID, 'location'); ?>
+                <?php $loc = array_shift($location); ?>
+                <?php $loc = $loc->slug; ?>
+                <?php $rendering = wp_get_post_terms($post->ID, 'rendering'); ?>
+                <?php $rend = array_shift($rendering); ?>
+                <?php $rend = $rend->slug; ?>
+
+                <div class="zhaluzi-card <?php echo $class; ?> <?php echo $loc; ?>_<?php echo $rend; ?>">
+                  <div class="col-xs-12 col-sm-5 col-lg-5 nopadding zhaluzi-card-img">
+                    <?php if ( has_post_thumbnail()) { ?>
+                      <img src="<?php echo the_post_thumbnail_url('medium'); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+                    <?php } else { ?>
+                      <img src="<?php echo catchFirstImage(); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
+                    <?php } ?>
+                    <div class="zhaluzi-card-img__price upper phil-bold">
+                      <div class="left lilac">от <span><?php the_field('time'); ?></span> дня</div>
+                      <div class="right orange">от <span><?php the_field('price'); ?></span> BYN</div>
                     </div>
-                    <div class="block-inline">
-                      <i class="ic ic-sun"></i>
-                      <p>Защита от яркого света</p>
-                    </div>
-                    <div class="block-inline">
-                      <i class="ic ic-sun"></i>
-                      <p>Защита от яркого света</p>
-                    </div>
+                    <a href="<?php echo home_url(); ?>/portfolio.htm" class="btn btn-gallery fira-bold"><i class="ic ic-gal"></i><span>ГАЛЕРЕЯ ВЫПОЛНЕННЫХ РАБОТ</span></a>
                   </div>
-                  <!-- end block -->
-                  <div class="block">
-                    <div class="block-tittle-sm upper">МАТЕРИАЛЫ:</div>
-                    <div class="materials-slider-wrap">
-                      <div class="materials-slider">
-                        <div class="materials-slider__block">
-                          <div class="inner color-1"></div>
+                  <!-- end zhaluzi-card-img -->
+                  <div class="col-xs-12 col-sm-7 col-lg-7 nopadding zhaluzi-card-descr">
+                    <h2 class="block-tittle fira-bold upper"><?php the_title(); ?></h2>
+                    <div class="block">
+                      <div class="block-tittle-sm upper">КОНСТРУКЦИЯ:</div>
+                      <?php the_content(); ?>
+                    </div>
+                    <!-- end block -->
+                    <div class="block">
+                      <div class="block-tittle-sm upper">ПРИНЦИП РАБОТЫ:</div>
+                      <?php the_field('workprincipe'); ?>
+                    </div>
+                    <!-- end block -->
+                    <div class="block">
+                      <div class="block-tittle-sm upper">ОСОБЕННОСТИ:</div>
+                      <?php $specs_list = wp_get_post_terms($post->ID, 'specs'); ?>
+                      <?php foreach ($specs_list as $specs) { ?>
+                        <div class="block-inline">
+                          <?php $image = get_field('image', $specs);if( !empty($image) ): ?>
+                            <i class="ic ic-sun" style="background-image: url(<?php echo $image['url']; ?>);"></i>
+                          <?php endif; ?>
+                          <p><?php echo $specs->name; ?></p>
                         </div>
-                        <div class="materials-slider__block">
-                          <div class="inner color-2"></div>
+                      <?php } ?>
+                    </div>
+                    <!-- end block -->
+                    <div class="block">
+                      <div class="block-tittle-sm upper">МАТЕРИАЛЫ:</div>
+                      <div class="materials-slider-wrap">
+                        <div class="materials-slider-<?php echo $n; ?>">
+                          <?php $color_list = wp_get_post_terms($post->ID, 'materials'); ?>
+                          <?php foreach ($color_list as $color) { ?>
+                            <div class="materials-slider__block">
+                              <div class="inner color-1" style="background-color: <?php the_field('color', $color); ?>"></div>
+                            </div>
+                          <?php } ?>
                         </div>
-                        <div class="materials-slider__block">
-                          <div class="inner color-3"></div>
-                        </div>
-                        <div class="materials-slider__block">
-                          <div class="inner color-4"></div>
-                        </div>
-                        <div class="materials-slider__block">
-                          <div class="inner color-5"></div>
-                        </div>
-                        <div class="materials-slider__block">
-                          <div class="inner color-1"></div>
-                        </div>
+                        <!--  end materials-slider -->
                       </div>
-                      <!--  end materials-slider -->
+                      <!-- end materials-slider-wrap -->
                     </div>
-                    <!-- end materials-slider-wrap -->
+                    <!-- end block -->
                   </div>
-                  <!-- end block -->
-                </div>
-                <!-- end zhaluzi-card-descr -->
-                <div class="clearfix"></div>
-              </div>
-              <!-- end zhaluzi-card -->
+                  <!-- end zhaluzi-card-descr -->
+                  <div class="clearfix"></div>
+                </div><!-- end zhaluzi-card -->
+
+              <?php $n++; endwhile; endif; ?>
+              <?php wp_reset_query(); ?>
+
               <div class="zhaluzi-info">
-                <div class="col-xs-12 col-md-6 nopadding left">
-                  <p class="text">Служба Яндекс.Рефераты предназначена для студентов и школьников, дизайнеров и журналистов, создателей научных заявок и отчетов — для всех, кто относится к тексту, как к количеству знаков.</p>
-                  <p class="text">Нажав на кнопку «Написать реферат», вы лично создаете уникальный текст, причем именно от вашего нажатия на кнопку зависит, какой именно текст получится — таким образом, авторские права на реферат принадлежат только вам.</p>
-                  <p class="text">Теперь никто не сможет обвинить вас в плагиате, ибо каждый текст Яндекс.Рефератов неповторим.</p>
-                  <p class="text">Текстами рефератов можно пользоваться совершенно бесплатно, однако при транслировании и предоставлении текстов в массовое пользование ссылка на Яндекс.Рефераты обязательна.</p>
-                </div>
-                <div class="col-xs-12 col-md-6 nopadding right">
-                  <p class="text">Служба Яндекс.Рефераты предназначена для студентов и школьников, дизайнеров и журналистов, создателей научных заявок и отчетов — для всех, кто относится к тексту, как к количеству знаков.</p>
-                  <p class="text">Нажав на кнопку «Написать реферат», вы лично создаете уникальный текст, причем именно от вашего нажатия на кнопку зависит, какой именно текст получится — таким образом, авторские права на реферат принадлежат только вам.</p>
-                  <p class="text">Теперь никто не сможет обвинить вас в плагиате, ибо каждый текст Яндекс.Рефератов неповторим.</p>
-                  <p class="text">Текстами рефератов можно пользоваться совершенно бесплатно, однако при транслировании и предоставлении текстов в массовое пользование ссылка на Яндекс.Рефераты обязательна.</p>
+                <div class="col-xs-12 col-md-12 nopadding ">
+                  <?php the_content(); ?>
                 </div>
                 <div class="clearfix"></div>
               </div>
@@ -122,14 +120,12 @@
             </div>
             <!-- end section-body -->
           </div>
-        </div>
-      </section>
-      <!-- end page -->
+
+      </section><!-- end page -->
 
        <?php get_template_part('includes/formcallback'); ?>
 
     </main>
-
   <?php endwhile; endif; ?>
 
 <?php get_footer(); ?>
