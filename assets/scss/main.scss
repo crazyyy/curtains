@@ -3197,6 +3197,9 @@ p.text:not(:last-of-type) {
 
 .karnizi-type {
   margin-bottom: 60px;
+  p {
+    margin-bottom: 15px;
+  }
 }
 
 .karnizi-type__block {
@@ -3207,15 +3210,11 @@ p.text:not(:last-of-type) {
 
     display: block;
 
-    -webkit-transition: .4s;
-         -o-transition: .4s;
-            transition: .4s;
+    transition: .4s;
 
-    -webkit-box-shadow: 0 0 13px rgba(0, 0, 0, .1);
-            box-shadow: 0 0 13px rgba(0, 0, 0, .1);
+    box-shadow: 0 0 13px rgba(0, 0, 0, .1);
     &:hover {
-      -webkit-box-shadow: 0 0 13px rgba(0, 0, 0, .3);
-              box-shadow: 0 0 13px rgba(0, 0, 0, .3);
+      box-shadow: 0 0 13px rgba(0, 0, 0, .3);
     }
   }
   span {
@@ -3246,6 +3245,8 @@ p.text:not(:last-of-type) {
 
 .slick-prev,
 .slick-next {
+  z-index: 5;
+
   height: auto;
 }
 
