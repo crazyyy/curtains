@@ -102,13 +102,12 @@
                 ?>
 
                   <div id="post-<?php the_ID(); ?>" class="col-xs-6 col-md-4 nopadding card-product__img card-product__img--cat">
-                    <?php if ( has_post_thumbnail()) { ?>
-                      <a href="<?php echo the_post_thumbnail_url('full'); ?>" data-toggle="lightbox" data-gallery="example-gallery">
+                    <a href="<?php the_permalink(); ?>">
+                      <?php if ( has_post_thumbnail()) { ?>
                         <img src="<?php echo the_post_thumbnail_url('medium'); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
-                    <?php } else { ?>
-                      <a href="<?php echo catchFirstImage(); ?>" data-toggle="lightbox" data-gallery="example-gallery">
+                      <?php } else { ?>
                         <img src="<?php echo catchFirstImage(); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />
-                    <?php } ?>
+                      <?php } ?>
                       <?php if( get_field('sale') ): ?>
                         <span class="action upper fira-bold">НА АКЦИИ</span>
                       <?php endif; ?>

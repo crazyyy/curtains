@@ -1,4 +1,4 @@
-<?php /* Template Name: Zhaluzi Page */ get_header(); ?>
+<?php /* Template Name: Roller blinds Page */ get_header(); ?>
 
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
@@ -19,7 +19,7 @@
 
                 <div class="col-xs-12 col-lg-5 nopadding">
                   <span class="phil-reg">РАСПОЛОЖЕНИЕ:</span>
-                  <?php $wcatTerms = get_terms('location', array('hide_empty' => 0, 'parent' =>0)); $i = 1; foreach($wcatTerms as $wcatTerm) : ?>
+                  <?php $wcatTerms = get_terms('location_r', array('hide_empty' => 0, 'parent' =>0)); $i = 1; foreach($wcatTerms as $wcatTerm) : ?>
                     <?php if ($i == 1) { $class = 'active"'; } else { $class = ''; } ?>
                     <a href="#" class="btn btn-orange-f filter-1 <?php echo $class; ?>" data-slug="<?php echo $wcatTerm->slug; ?>"><?php echo $wcatTerm->name; ?></a>
                   <?php $i++; endforeach; ?>
@@ -27,7 +27,7 @@
 
                 <div class="col-xs-12 col-lg-7 nopadding">
                   <span class="phil-reg">ИСПОЛНЕНИЕ:</span>
-                  <?php $wcatTerms = get_terms('rendering', array('hide_empty' => 0, 'parent' =>0)); $i = 1; foreach($wcatTerms as $wcatTerm) : ?>
+                  <?php $wcatTerms = get_terms('rendering_r', array('hide_empty' => 0, 'parent' =>0)); $i = 1; foreach($wcatTerms as $wcatTerm) : ?>
                     <?php if ($i == 1) { $class = 'active"'; } else { $class = ''; } ?>
                     <a href="#" class="btn btn-orange-f filter-2 <?php echo $class; ?>" data-slug="<?php echo $wcatTerm->slug; ?>"><?php echo $wcatTerm->name; ?></a>
                   <?php $i++; endforeach; ?>
@@ -36,14 +36,14 @@
               </div>
               <!-- end filter-orange -->
 
-              <?php query_posts("showposts=12&post_type=shutter"); ?>
+              <?php query_posts("showposts=12&post_type=rollerblinds"); ?>
               <?php $n = 1; if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
                 <?php if ($n == 1) { $class = 'zhaluzi-card--active'; } else { $class = ''; } ?>
 
-                <?php $location = wp_get_post_terms($post->ID, 'location'); ?>
+                <?php $location = wp_get_post_terms($post->ID, 'location_r'); ?>
                 <?php $loc = array_shift($location); ?>
                 <?php $loc = $loc->slug; ?>
-                <?php $rendering = wp_get_post_terms($post->ID, 'rendering'); ?>
+                <?php $rendering = wp_get_post_terms($post->ID, 'rendering_r'); ?>
                 <?php $rend = array_shift($rendering); ?>
                 <?php $rend = $rend->slug; ?>
 
@@ -75,7 +75,7 @@
                     <!-- end block -->
                     <div class="block">
                       <div class="block-tittle-sm upper">ОСОБЕННОСТИ:</div>
-                      <?php $specs_list = wp_get_post_terms($post->ID, 'specs'); ?>
+                      <?php $specs_list = wp_get_post_terms($post->ID, 'specs_r'); ?>
                       <?php foreach ($specs_list as $specs) { ?>
                         <div class="block-inline">
                           <?php $image = get_field('image', $specs);if( !empty($image) ): ?>
@@ -90,7 +90,7 @@
                       <div class="block-tittle-sm upper">МАТЕРИАЛЫ:</div>
                       <div class="materials-slider-wrap-<?php echo $n; ?>">
                         <div class="materials-slider-<?php echo $n; ?>">
-                          <?php $color_list = wp_get_post_terms($post->ID, 'materials'); ?>
+                          <?php $color_list = wp_get_post_terms($post->ID, 'materials_r'); ?>
                           <?php foreach ($color_list as $color) { ?>
                             <div class="materials-slider__block">
                               <div class="inner color-1" style="background-color: <?php the_field('color', $color); ?>"></div>

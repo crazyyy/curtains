@@ -27,7 +27,7 @@ $(document).ready(function() {
       // $('#modal_eaves .karnizi-type__modal-descr .upper').html('verstala pidarala')
   })
 
-  if ($('body').hasClass('page-template-page-zhaluzi')) {
+  if ($('body').hasClass('page-template-page-zhaluzi') || $('body').hasClass('page-template-page-rollerblinds')) {
     /* set active shutter on shutter page */
     var location = $('.filter-1.active').attr('data-slug');
     var rendering = $('.filter-2.active').attr('data-slug');

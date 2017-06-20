@@ -65,7 +65,6 @@
     </div>
   </footer>
 
-
   <div class="modal fade" id="modal_eaves" tabindex="-1" role="dialog" aria-labelledby="modal_eaves" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -116,7 +115,7 @@
           </div>
           <!-- end karnizi-type__modal-descr -->
           <div class="karnizi-type__modal-img">
-            <img class="modal-image" src="img/karnizi/model1-lg.jpg" alt="karniz">
+            <img class="modal-image" src="<?php echo get_template_directory_uri(); ?>/img/karnizi/model1-lg.jpg" alt="karniz">
           </div>
         </div>
         <!-- end modal-body -->
