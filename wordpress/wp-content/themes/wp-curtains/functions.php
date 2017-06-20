@@ -1390,6 +1390,101 @@ function taxonomies_specs_r() {
   register_taxonomy( 'specs_r', array( 'rollerblinds' ), $args );
 }
 
+/** portfolio */
+add_action( 'init', 'post_type_portfolio' );
+function post_type_portfolio() {
 
+  $labels = array(
+    'name'=> 'Портфолио',
+    'singular_name' => 'Портфолио',
+    'add_new' => 'Add',
+    'add_new_item' => 'Add',
+    'edit' => 'Edit',
+    'edit_item' => 'Edit',
+    'new-item' => 'Add',
+    'view' => 'View',
+    'view_item' => 'View',
+    'search_items' => 'Search',
+    'not_found' => 'Not Found',
+    'not_found_in_trash' => 'Not Found',
+    'parent' => 'Parent',
+  );
+
+  $args = array(
+    'labels' => $labels,
+    'description' => 'Портфолио',
+    'public' => true,
+    'exclude_from_search' => true,
+    'show_ui' => true,
+    'menu_position' => 3,
+    // https://developer.wordpress.org/resource/dashicons/
+    'menu_icon' => 'dashicons-format-gallery',
+    'capability_type' => 'post',
+    'hierarchical' => false,
+    'supports' => array('title','editor','thumbnail'),
+    'rewrite' => array( 'slug' => 'portfolio' ),
+    'show_in_rest' => true
+  );
+
+  register_post_type( 'portfolio' , $args );
+}
+
+add_action( 'init', 'taxonomies_room', 0 );
+function taxonomies_room() {
+  // Add new taxonomy, make it hierarchical (like categories)
+  $labels = array(
+    'name'              => 'Помещение',
+    'singular_name'     => 'Помещение',
+    'search_items'      => 'Search',
+    'all_items'         => 'All',
+    'parent_item'       => 'Parent',
+    'parent_item_colon' => 'Parent',
+    'edit_item'         => 'Edit',
+    'update_item'       => 'Update',
+    'add_new_item'      => 'Добавить',
+    'new_item_name'     => 'Добавить',
+    'menu_name'         => 'Помещение',
+  );
+
+  $args = array(
+    'hierarchical'      => true,
+    'labels'            => $labels,
+    'show_ui'           => true,
+    'show_admin_column' => true,
+    'query_var'         => true,
+    'rewrite'           => array( 'slug' => 'room' ),
+  );
+
+  register_taxonomy( 'room', array( 'portfolio' ), $args );
+}
+
+add_action( 'init', 'taxonomies_exampl', 0 );
+function taxonomies_exampl() {
+  // Add new taxonomy, make it hierarchical (like categories)
+  $labels = array(
+    'name'              => 'Примеры',
+    'singular_name'     => 'Примеры',
+    'search_items'      => 'Search',
+    'all_items'         => 'All',
+    'parent_item'       => 'Parent',
+    'parent_item_colon' => 'Parent',
+    'edit_item'         => 'Edit',
+    'update_item'       => 'Update',
+    'add_new_item'      => 'Добавить',
+    'new_item_name'     => 'Добавить',
+    'menu_name'         => 'Примеры',
+  );
+
+  $args = array(
+    'hierarchical'      => true,
+    'labels'            => $labels,
+    'show_ui'           => true,
+    'show_admin_column' => true,
+    'query_var'         => true,
+    'rewrite'           => array( 'slug' => 'exampl' ),
+  );
+
+  register_taxonomy( 'exampl', array( 'portfolio' ), $args );
+}
 
 ?>

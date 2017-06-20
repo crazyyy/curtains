@@ -55,10 +55,71 @@ $(document).ready(function() {
         $(selector).addClass('zhaluzi-card--active');
       }
     })
-
-
   }
 
+  if ($('body').hasClass('page-template-page-portfolio')) {
+    $('.portfolio-filter__top a').on('click', function(e) {
+      var room = $(this).attr('data-slug');
+      var exampl = $('.portfolio-filter__bot .active').attr('data-slug');
+      var classOne = 'room_' + room;
+      var selectorOne = '.room_' + room;
+      var classTwo = 'exampl_' + exampl;
+      var selectorTwo = '.exampl_' + exampl;
+
+      if ($('.portfolio-filter__bot .active').hasClass('all')) {
+        $('.portfolio-rezalt--block').each(function(index, el) {
+          $(this).hide('slow');
+        });
+        $(selectorOne).each(function(index, el) {
+          $(this).show('slow');
+        });
+      } else {
+        $('.portfolio-rezalt--block').each(function(index, el) {
+          $(this).hide('slow');
+        });
+        $(selectorOne).each(function(index, el) {
+          if ($(this).hasClass(classTwo)) {
+            $(this).show('slow');
+          }
+        });
+      }
+    })
+    $('.portfolio-filter__bot a').on('click', function(e) {
+      var room = $('.portfolio-filter__top .active').attr('data-slug');
+      var exampl = $(this).attr('data-slug');
+      var classOne = 'room_' + room;
+      var selectorOne = '.room_' + room;
+      var classTwo = 'exampl_' + exampl;
+      var selectorTwo = '.exampl_' + exampl;
+
+      if ($('.portfolio-filter__top .active').hasClass('all')) {
+        $('.portfolio-rezalt--block').each(function(index, el) {
+          $(this).hide('slow');
+        });
+        $(selectorTwo).each(function(index, el) {
+          $(this).show('slow');
+        });
+      } else {
+        $('.portfolio-rezalt--block').each(function(index, el) {
+          $(this).hide('slow');
+        });
+        $(selectorTwo).each(function(index, el) {
+          if ($(this).hasClass(classOne)) {
+            $(this).show('slow');
+          }
+        });
+      }
+    })
+    $('.portfolio-filter__bot .btn-reset').on('click', function(e) {
+      $('.portfolio-filter__top .active').removeClass('active')
+      $('.portfolio-filter__top .all').addClass('active')
+      $('.portfolio-filter__bot .active').removeClass('active')
+      $('.portfolio-filter__bot .all').addClass('active')
+      $('.portfolio-rezalt--block').each(function(index, el) {
+        $(this).show('slow');
+      });
+    })
+  }
 
   $('.disabled').on('click', function(e) {
       e.preventDefault();

@@ -3531,8 +3531,7 @@ p.text:not(:last-of-type) {
         height: 100%;
 
         content: '';
-        -webkit-transition: .4s;
-             -o-transition: .4s;
+
                 transition: .4s;
 
         opacity: 0;
@@ -3558,6 +3557,12 @@ p.text:not(:last-of-type) {
     img {
       width: 100%;
     }
+  }
+  .portfolio-rezalt--block {
+    display: none;
+  }
+  .portfolio-rezalt--active {
+    display: block;
   }
 }
 
