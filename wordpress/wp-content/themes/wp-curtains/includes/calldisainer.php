@@ -6,7 +6,7 @@
         <h2 class="phil-bold">Закажите бесплатный выезд дизайнера</h2>
       </div>
       <div class="col-xs-12 col-md-8 call-disainer__form">
-        <form action="#" class="call-disainer-form">
+        <div action="#" class="call-disainer-form">
           <div class="nav">
             <span class="phil-reg">Что вас интересует?</span>
             <ul class="nav nav-tabs nav-tabs--form">
@@ -134,16 +134,10 @@
             </div>
             <!-- end tab1 -->
           </div>
-          <div class="form-inputs form-inputs--inline">
-            <div class="form-group">
-              <input type="text" class="form-control" id="input-name" placeholder="Ваше имя">
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control" id="input-phone" placeholder="Ваш телефон">
-            </div>
-            <button type="submit" class="btn btn-orange">ОТПРАВИТЬ</button>
+          <div class="form-inputs form-inputs--inline calldisainer--main">
+            <?php echo do_shortcode('[contact-form-7 id="784" title="Call Designer"]'); ?>
           </div>
-        </form>
+        </div><!-- call-disainer-form -->
       </div>
       <div class="clearfix"></div>
     </div>

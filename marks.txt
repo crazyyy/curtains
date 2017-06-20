@@ -18,7 +18,6 @@
 Только 2
 
 
-
 6. такая вот формочка https://monosnap.com/file/54fPw8LPndLY9yLTobcraWUoTAFXto.png  там есть переключатель и вот допустим есличеловек выбрал несколько штор и несколько жалюзей - отсылать все вместе или только то, что активно сейчас?
 То что активно сейчас.
 
@@ -38,17 +37,14 @@
 2. На главной эти штуки https://monosnap.com/file/JugHByE0kTtFipcz3coLCasBOlpZom.png выглядят кликабельными, куда они должны вести? или они просто такие?
 Это просто информация при наведении, никуда не ведет.
 
-5. Рольшторы делать примеру карнизов или как они выглядят http://demo10.saitobaza.ru/rolshtory.htm ?
-
-Раздел будет аналогичен http://domshtor.bit-storm.ru/zhaluzi.html
 
 
 
----------------------
----------------------
----------------------
+<div class="form-group">[text input-name id:input-name class:form-control placeholder "Ваше имя"]</div><div class="form-group">[text input-phone id:input-phone class:form-control placeholder "Ваш телефон"]</div>[text input-chosen id:input-chosen class:form-control class:form-control-hidden]
+[submit class:btn class:btn-orange "ОТПРАВИТЬ"]
 
 
-Карта была нерабочая, в контактах. Подразумевалось что по клику н ТЦ будет показываться маркер на карте, но оно не работало
-В блоге записи сверстаны ногами - не под динамический вывод, пришлось переделывать
-Характеристики товара были склеены в спрайт, пришлось переделывать
+
+
+
+<div class="form-inputs form-inputs--inline"><div class="form-group">[text input-name id:input-name class:form-control placeholder "Ваше имя"]</div><div class="form-group">[text input-phone id:input-phone class:form-control placeholder "Ваш телефон"]</div>[submit class:btn class:btn-orange "ОТПРАВИТЬ"]

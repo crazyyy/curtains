@@ -1,5 +1,15 @@
 $(document).ready(function() {
-  /* modal window on evaves page*/
+  $('.calldisainer--main form').on('submit', function(e) {
+      var firstTab = $('.nav-tabs--form .active a').html();
+      var html = firstTab;
+      $('.catalog-checkbox input:checked').each(function(index, el) {
+        var id = $(this).attr('id');
+        html = html + ' ' + id;
+      });
+      $('.input-chosen input').val(html)
+
+    })
+    /* modal window on evaves page*/
   $('.karnizi-type__block a').on('click', function(e) {
     var $parent = $(this).parent();
     $parent.addClass('current-modal-container');

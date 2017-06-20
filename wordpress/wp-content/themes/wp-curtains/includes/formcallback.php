@@ -6,19 +6,11 @@
           <p>Оставьте заявку и консультант с вами свяжется</p>
         </div>
         <div class="col-xs-12 col-md-8 form-callback__form nopadding">
-          <form action="#" class="call-disainer-form">
-            <div class="form-inputs form-inputs--inline">
-              <div class="form-group">
-                <input type="text" class="form-control" id="input-name" placeholder="Ваше имя">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" id="input-phone" placeholder="Ваш телефон">
-              </div>
-              <button type="submit" class="btn btn-orange">ОТПРАВИТЬ</button>
-            </div>
-          </form>
+          <div class="call-disainer-form">
+            <?php echo do_shortcode('[contact-form-7 id="795" title="call-disainer-form"]'); ?>
+          </div>
         </div>
-        <div class="clearfix"></div>
       </div>
+      <div class="clearfix"></div>
     </div>
   </section><!-- end form-callback -->

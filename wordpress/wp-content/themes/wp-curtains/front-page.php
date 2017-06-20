@@ -135,7 +135,7 @@
                   <div class="inner bxsh bd-lil">
                     <span class="num lilac fira-thin">4</span>
                     <div class="tittle upper lilac fira-med">ПРОСТЫХ ШАГА <br>К ИДЕАЛЬНОМУ <br> ОФОРМЛЕНИЮ ОКОН</div>
-                    <p>Предоставление возможности изготовления обивочных мебельных тканей, тканей для диванов по эскизам тканей для диванов  заказчика и услуги фотореалистичного "переодевания" мебели при разработке дизайна.</p>
+                    <?php the_field('descr'); ?>
                   </div>
                 </div>
                 <!-- end how-work__promo -->
@@ -145,7 +145,7 @@
                       <i class="ic ic-pancil"></i>
                     </div>
                     <div class="tittle orange fira-bold">1 шаг</div>
-                    <p>Предоставление возможности изготовления обивочных мебельных тканей, тканей для диванов по </p>
+                    <?php the_field('steap_1'); ?>
                     <div class="arrow">
                       <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </div>
@@ -156,7 +156,7 @@
                       <i class="ic ic-woman"></i>
                     </div>
                     <div class="tittle orange fira-bold">2 шаг</div>
-                    <p>Предоставление возможности изготовления обивочных мебельных тканей, тканей для диванов по </p>
+                    <?php the_field('steap_2'); ?>
                     <div class="arrow">
                       <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </div>
@@ -167,7 +167,7 @@
                       <i class="ic ic-layers"></i>
                     </div>
                     <div class="tittle orange fira-bold">3 шаг</div>
-                    <p>Предоставление возможности изготовления обивочных мебельных тканей, тканей для диванов по </p>
+                    <?php the_field('steap_3'); ?>
                     <div class="arrow">
                       <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </div>
@@ -178,7 +178,7 @@
                       <i class="ic ic-time"></i>
                     </div>
                     <div class="tittle orange fira-bold">4 шаг</div>
-                    <p>Предоставление возможности изготовления обивочных мебельных тканей, тканей для диванов по </p>
+                    <<?php the_field('steap_4'); ?>
                   </div>
                   <!--  end block -->
                   <div class="clearfix"></div>
