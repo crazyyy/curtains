@@ -125,6 +125,9 @@
 
 </div>
 
+  <script>
+    window.homepage = 'http://curtains.dev/';
+  </script>
   <?php wp_footer(); ?>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="<?php echo get_template_directory_uri(); ?>/js/slick.min.js"></script>
@@ -133,5 +136,6 @@
   <script src="<?php echo get_template_directory_uri(); ?>/js/jquery-ui.min.js"></script>
   <script src="<?php echo get_template_directory_uri(); ?>/js/ekko-lightbox.js"></script>
   <script src="<?php echo get_template_directory_uri(); ?>/js/main.js"></script>
+
 </body>
 </html>

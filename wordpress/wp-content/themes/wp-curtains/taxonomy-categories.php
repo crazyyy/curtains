@@ -24,32 +24,13 @@
             <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3 sidebar pd-right nopadding">
               <div class="block block--category">
                 <div class="tittle upper gray-l fira-thin">
-                  <h2>КАТЕГОРИИ</h2></div>
-                <div class="sidebar-category upper">
-                  <div class="sidebar-category__btn lilac fira-bold">ПОРТЬЕРА</div>
-                  <div class="sidebar-category__cont">
-                    <ul>
-                      <li><a href="#" class="orange">- Однотонная</a></li>
-                      <li><a href="#" class="orange">- С рисунком</a></li>
-                      <li><a href="#" class="orange">- Black OUT</a></li>
-                    </ul>
-                  </div>
+                  <h2>КАТЕГОРИИ</h2>
                 </div>
-                <!-- end sidebar-category -->
-                <div class="sidebar-category upper">
-                  <div class="sidebar-category__btn lilac fira-bold">ТЮЛЬ</div>
-                  <div class="sidebar-category__cont">
-                    <ul>
-                      <li><a href="#" class="orange">- Однотонная</a></li>
-                      <li><a href="#" class="orange">- С рисунком</a></li>
-                      <li><a href="#" class="orange">- Black OUT</a></li>
-                    </ul>
-                  </div>
-                </div>
-                <!-- end sidebar-category -->
+                <a class="block--category--href" href="<?php echo home_url(); ?>/categories/tyuli">ТЮЛЬ</a>
+                <a class="block--category--href" href="<?php echo home_url(); ?>/categories/portery">ПОРТЬЕРА</a>
                 <div class="sidebar-links">
-                  <a href="#" class="sidebar-category__link upper fira-bold">НОВИНКИ</a>
-                  <a href="#" class="sidebar-category__link upper fira-bold">РАСПРОДАЖА</a>
+                  <a href="#" class="sidebar-category__link upper fira-bold sidebar-links--new">НОВИНКИ</a>
+                  <a href="#" class="sidebar-category__link upper fira-bold sidebar-links--sale">РАСПРОДАЖА</a>
                 </div>
                 <div class="sidebar-range">
                   <p class="upper gray-l">СТОИМОСТЬ, BYN:</p>
@@ -83,7 +64,7 @@
             </div>
             <!-- end sidebar -->
             <div class="col-xs-12 col-sm-7 col-md-8 col-lg-9 card-product__wrap nopadding">
-              <div class="card-products-cat-wrap">
+              <div class="card-products-cat-wrap clearfix">
 
                 <?php $args = array(
                   'post_type' => 'product',
@@ -125,7 +106,6 @@
                 wp_reset_postdata();
                 ?>
 
-                <div class="clearfix"></div>
               </div><!-- end card-products-cat-wrap -->
 
               <div class="card-product__descr">

@@ -370,18 +370,78 @@ $(document).ready(function() {
     $(this).children(".informer").fadeOut();
   });
   /************range slider****************/
-  $("#slider-range").slider({
-    range: true,
-    min: 1,
-    max: 150,
-    values: [20, 90],
-    slide: function(event, ui) {
-      $("#amount").val(ui.values[0]);
-      $("#amount_1").val(ui.values[1]);
-    }
-  });
-  $("#amount").val($("#slider-range").slider("values", 0));
-  $("#amount_1").val($("#slider-range").slider("values", 1));
+
+  if ($('body').hasClass('tax-categories')) {
+    $('.sidebar-range').hide('fast');
+    var ajaxurl = window.homepage + '/wp-admin/admin-ajax.php';
+    $.ajax({
+      type: "GET",
+      url: ajaxurl,
+      dataType: 'html',
+      data: ({
+        action: 'get_prices_and_id',
+      }),
+
+      success: function(data) {
+        var result = JSON.parse(data);
+        var range = [];
+
+        $.each(result, function(index, val) {
+
+          val.price = parseInt(val.price);
+          val.id = parseInt(val.id);
+          val.sale = parseInt(val.sale);
+
+          range.push(val.price)
+        });
+
+        range.sort(function(a, b) {
+          return a - b;
+        });
+
+        window.range = range;
+
+        var highest = range[range.length - 1];
+        var minis = range[0];
+
+        $("#slider-range").slider({
+          range: true,
+          min: minis,
+          max: highest,
+          values: [minis, highest],
+          slide: function(event, ui) {
+            $("#amount").val(ui.values[0]);
+            $("#amount_1").val(ui.values[1]);
+          }
+        });
+        $("#amount").val($("#slider-range").slider("values", 0));
+        $("#amount_1").val($("#slider-range").slider("values", 1));
+
+        window.rangedResult = result;
+        $('.sidebar-range').show('fast');
+        return rangedResult;
+      }
+    });
+
+
+  } else {
+    var highest = 150;
+    var minis = 1;
+    var range = [20, 90];
+    window.range = range;
+    $("#slider-range").slider({
+      range: true,
+      min: minis,
+      max: highest,
+      values: range,
+      slide: function(event, ui) {
+        $("#amount").val(ui.values[0]);
+        $("#amount_1").val(ui.values[1]);
+      }
+    });
+    $("#amount").val($("#slider-range").slider("values", 0));
+    $("#amount_1").val($("#slider-range").slider("values", 1));
+  }
 
   // Изменение местоположения ползунка при вводиде данных в первый элемент input
   $("input#amount").change(function() {
@@ -392,6 +452,7 @@ $(document).ready(function() {
       $("input#amount").val(value1);
     }
     $("#slider-range").slider("values", 0, value1);
+    console.log('min')
   });
 
   // Изменение местоположения ползунка при вводиде данных в второй элемент input
@@ -404,6 +465,7 @@ $(document).ready(function() {
       $("input#amount_1").val(value2);
     }
     $("#slider-range").slider("values", 1, value2);
+    console.log('max')
   });
 
   // фильтрация ввода в поля
@@ -420,6 +482,42 @@ $(document).ready(function() {
     if (!/\d/.test(keyChar)) return false;
 
   });
+
+  $("#slider-range").on("slidechange", function(event, ui) {
+    spinnerLoader();
+    var minValue = ui.values[0];
+    var maxValue = ui.values[1];
+
+    var result = window.rangedResult;
+    var querysId = [];
+
+    $.each(result, function(index, val) {
+      if ((val.price >= minValue) && (val.price <= maxValue)) {
+        querysId.push(val.id)
+      }
+    });
+    console.log(querysId);
+    var ajaxurl = window.homepage + '/wp-admin/admin-ajax.php';
+
+    $.ajax({
+      type: "GET",
+      url: ajaxurl,
+      dataType: 'html',
+      data: ({
+        action: 'get_ranged',
+        ids: querysId
+      }),
+
+      success: function(data) {
+        $('.card-product__img--cat').hide('fast');
+        $('.card-products-cat-wrap').hide().fadeIn('slow').html(data);
+        $('.card-products-cat-wrap').css('height', 'auto');
+      }
+    });
+
+
+  });
+
   // maps
   (function($) {
     /*
@@ -644,3 +742,54 @@ $(document).ready(function() {
     });
   })(jQuery);
 });
+$(document).ready(function() {
+
+  var ajaxurl = window.homepage + '/wp-admin/admin-ajax.php';
+
+  $(".sidebar-links--new").click(function(e) {
+    e.preventDefault();
+    spinnerLoader();
+    $.ajax({
+      type: "GET",
+      url: ajaxurl,
+      dataType: 'html',
+      data: ({
+        action: 'get_new',
+      }),
+
+      success: function(data) {
+        $('.card-product__img--cat').hide('fast');
+        $('.card-products-cat-wrap').hide().fadeIn('slow').html(data);
+        $('.card-products-cat-wrap').css('height', 'auto');
+      }
+    });
+  });
+
+  $(".sidebar-links--sale").click(function(e) {
+    e.preventDefault();
+    spinnerLoader();
+    $.ajax({
+      type: "GET",
+      url: ajaxurl,
+      dataType: 'html',
+      data: ({
+        action: 'get_sale',
+      }),
+
+      success: function(data) {
+        $('.card-product__img--cat').hide('fast');
+        $('.card-products-cat-wrap').hide().fadeIn('slow').html(data);
+        $('.card-products-cat-wrap').css('height', 'auto');
+      }
+    });
+  });
+
+});
+
+function spinnerLoader() {
+  var height = $('.card-products-cat-wrap').height();
+
+  $('.card-products-cat-wrap').height(200);
+  $('.card-products-cat-wrap').html('<div class="loader col-md-12 col-xs-12"><span class="loader-block"></span><span class="loader-block"></span><span class="loader-block"></span><span class="loader-block"></span><span class="loader-block"></span><span class="loader-block"></span><span class="loader-block"></span><span class="loader-block"></span><span class="loader-block"></span></div>')
+
+}

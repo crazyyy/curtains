@@ -776,7 +776,7 @@ function post_type_product() {
   );
 
   $args = array(
-    'labels'             => $labels,
+    'labels' => $labels,
     'description' => 'Продукция',
     'public' => true,
     'exclude_from_search' => true,
@@ -1486,5 +1486,212 @@ function taxonomies_exampl() {
 
   register_taxonomy( 'exampl', array( 'portfolio' ), $args );
 }
+
+
+function get_new() {
+  // args
+  $args = array(
+    'post_type' => 'product',
+    'showposts' => 100,
+    'meta_query' => array(
+      array(
+        'key' => 'new',
+        'value' => '1',
+        'compare' => '=='
+      )
+    )
+  );
+
+  // query
+  $the_query = new WP_Query( $args );
+
+  if( $the_query->have_posts() ):
+    while( $the_query->have_posts() ) : $the_query->the_post();
+
+      if ( has_post_thumbnail()) {
+        $post_thumbnail_id = get_post_thumbnail_id( $post );
+        $image = '<img src="'. wp_get_attachment_image_url( $post_thumbnail_id, "medium" ) .'" title="'. get_the_title() .'" alt="'. get_the_title() .'" />';
+      } else {
+        $image = '<img src="'. catchFirstImage() .'" title="'. the_title() .'" alt="'. the_title() .'" />';
+      }
+      if( get_field('sale') ) {
+        $action = '<span class="action upper fira-bold">НА АКЦИИ</span>';
+      } else {
+        $action = '';
+      }
+
+      $output = $output .'<div id="post-'. get_the_ID() .'" class="col-xs-6 col-md-4 nopadding card-product__img card-product__img--cat">
+        <a href="'. get_the_permalink() .'">'. $image .'
+          '. $action .'
+          <span class="num upper fira-bold">'. get_the_title() .'</span>
+          <i class="ic ic-loop"></i>
+        </a>
+        <a href="#" class="like" like-id="'. get_the_ID() .'"><i class="ic ic-like"></i></a>
+      </div><!-- end card-product__img -->';
+    endwhile;
+  endif;
+
+  // Reset Query
+  wp_reset_query();
+  die($output);
+}
+add_action('wp_ajax_get_new', 'get_new');
+add_action('wp_ajax_nopriv_get_new', 'get_new'); // not really needed
+
+function get_sale() {
+
+  // args
+  $args = array(
+    'post_type' => 'product',
+    'showposts' => 100,
+    'meta_query' => array(
+      array(
+        'key' => 'sale',
+        'value' => '1',
+        'compare' => '=='
+      )
+    )
+  );
+
+  // query
+  $the_query = new WP_Query( $args );
+
+  if( $the_query->have_posts() ):
+    while( $the_query->have_posts() ) : $the_query->the_post();
+
+      if ( has_post_thumbnail()) {
+        $post_thumbnail_id = get_post_thumbnail_id( $post );
+        $image = '<img src="'. wp_get_attachment_image_url( $post_thumbnail_id, "medium" ) .'" title="'. get_the_title() .'" alt="'. get_the_title() .'" />';
+      } else {
+        $image = '<img src="'. catchFirstImage() .'" title="'. the_title() .'" alt="'. the_title() .'" />';
+      }
+      if( get_field('sale') ) {
+        $action = '<span class="action upper fira-bold">НА АКЦИИ</span>';
+      } else {
+        $action = '';
+      }
+
+      $output = $output .'<div id="post-'. get_the_ID() .'" class="col-xs-6 col-md-4 nopadding card-product__img card-product__img--cat">
+        <a href="'. get_the_permalink() .'">'. $image .'
+          '. $action .'
+          <span class="num upper fira-bold">'. get_the_title() .'</span>
+          <i class="ic ic-loop"></i>
+        </a>
+        <a href="#" class="like" like-id="'. get_the_ID() .'"><i class="ic ic-like"></i></a>
+      </div><!-- end card-product__img -->';
+    endwhile;
+  endif;
+
+  // Reset Query
+  wp_reset_query();
+  die($output);
+}
+add_action('wp_ajax_get_sale', 'get_sale');
+add_action('wp_ajax_nopriv_get_sale', 'get_sale'); // not really needed
+
+function get_prices_and_id() {
+  // args
+  $args = array(
+    'post_type' => 'product',
+    'showposts' => 100
+  );
+
+  // query
+  $the_query = new WP_Query( $args );
+
+
+  $output ='[';
+
+  $i = 0;
+
+  if( $the_query->have_posts() ):
+    while( $the_query->have_posts() ) : $the_query->the_post();
+
+      if ( has_post_thumbnail()) {
+        $post_thumbnail_id = get_post_thumbnail_id( $post );
+        $image = wp_get_attachment_image_url( $post_thumbnail_id, "medium" );
+      } else {
+        $image = catchFirstImage();
+      }
+      if( get_field('sale') ) {
+        $action = '1';
+      } else {
+        $action = '2';
+      }
+      if ($i == 0) {
+        $start = '';
+      } else {
+        $start = ',';
+      }
+
+      $output = $output.$start.'{
+        "id": "'. get_the_ID() .'",
+        "price": "'. get_field("price") .'",
+        "image": "'. $image .'",
+        "sale": "'. $action .'"
+      }';
+
+      $i++;
+
+    endwhile;
+  endif;
+
+  $output = $output .']';
+
+  // Reset Query
+  wp_reset_query();
+  die($output);
+}
+add_action('wp_ajax_get_prices_and_id', 'get_prices_and_id');
+add_action('wp_ajax_nopriv_get_prices_and_id', 'get_prices_and_id'); // not really needed
+
+function get_ranged() {
+
+$posts = $_GET['ids'];
+
+  // args
+  $args = array(
+    'post_type' => 'product',
+    'showposts' => 100,
+    'orderby' => 'ASC',
+    'post__in' => $posts,
+
+  );
+
+  // query
+  $the_query = new WP_Query( $args );
+
+  if( $the_query->have_posts() ):
+    while( $the_query->have_posts() ) : $the_query->the_post();
+
+      if ( has_post_thumbnail()) {
+        $post_thumbnail_id = get_post_thumbnail_id( $post );
+        $image = '<img src="'. wp_get_attachment_image_url( $post_thumbnail_id, "medium" ) .'" title="'. get_the_title() .'" alt="'. get_the_title() .'" />';
+      } else {
+        $image = '<img src="'. catchFirstImage() .'" title="'. the_title() .'" alt="'. the_title() .'" />';
+      }
+      if( get_field('sale') ) {
+        $action = '<span class="action upper fira-bold">НА АКЦИИ</span>';
+      } else {
+        $action = '';
+      }
+
+      $output = $output .'<div id="post-'. get_the_ID() .'" class="col-xs-6 col-md-4 nopadding card-product__img card-product__img--cat">
+        <a href="'. get_the_permalink() .'">'. $image .'
+          '. $action .'
+          <span class="num upper fira-bold">'. get_the_title() .'</span>
+          <i class="ic ic-loop"></i>
+        </a>
+        <a href="#" class="like" like-id="'. get_the_ID() .'"><i class="ic ic-like"></i></a>
+      </div><!-- end card-product__img -->';
+    endwhile;
+  endif;
+
+  // Reset Query
+  wp_reset_query();
+  die($output);
+}
+add_action('wp_ajax_get_ranged', 'get_ranged');
+add_action('wp_ajax_nopriv_get_ranged', 'get_ranged'); // not really needed
 
 ?>
