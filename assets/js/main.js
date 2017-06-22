@@ -666,11 +666,13 @@ $(document).ready(function() {
      */
     function add_marker($marker, map) {
       // var
+      var markers = window.homepage + '/wp-content/themes/wp-curtains/img/marker.png';
       var latlng = new google.maps.LatLng($marker.attr('data-lat'), $marker.attr('data-lng'));
       // create marker
       var marker = new google.maps.Marker({
         position: latlng,
-        map: map
+        map: map,
+        icon: markers
       });
       // add to array
       map.markers.push(marker);
@@ -784,12 +786,94 @@ $(document).ready(function() {
     });
   });
 
+  $(".sidebar-links--sale").click(function(e) {
+    e.preventDefault();
+    spinnerLoader();
+    $.ajax({
+      type: "GET",
+      url: ajaxurl,
+      dataType: 'html',
+      data: ({
+        action: 'get_sale',
+      }),
+
+      success: function(data) {
+        $('.card-product__img--cat').hide('fast');
+        $('.card-products-cat-wrap').hide().fadeIn('slow').html(data);
+        $('.card-products-cat-wrap').css('height', 'auto');
+      }
+    });
+  });
+
+  $(".card-product__img--cat .like").click(function(e) {
+    e.preventDefault();
+    var id = $(this).parent().attr('data-id');
+
+    if (!$(this).hasClass('liked')) {
+      $(this).addClass('liked');
+      $(this).parent().addClass('card-product__img--liked');
+    } else {
+      $(this).removeClass('liked')
+      $(this).parent().removeClass('card-product__img--liked');
+    }
+
+    console.log(id)
+
+    var data = {
+      'action': 'set_my_cookie',
+      'id': id
+    };
+
+    // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+    $.get(
+      ajaxurl,
+      data,
+      function(response) {
+        console.log('Got this from the server: ' + response);
+      }
+    );
+  });
+
+  if ($('body').hasClass('page-template-page-wishlist')) {
+    var data = {
+      'action': 'get_my_cookie'
+    };
+
+    // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+    $.get(
+      ajaxurl,
+      data,
+      function(response) {
+        $('.card-product__img--cat').hide('fast');
+        $('.card-products-cat-wrap').hide().fadeIn('slow').html(response);
+        $('.card-products-cat-wrap').css('height', 'auto');
+      }
+    );
+  }
+
+//   $('.nav-tabs--special li a').on('click', function(e) {
+//     e.preventDefault();
+
+//     if (!$(this).hasClass('active')) {
+//       var id = $(this).attr('href');
+// console.log(id)
+
+//       $('.tab-content .tab-pane').each(function(index, el) {
+//         $(this).removeClass('active');
+//         $(this).removeClass('in');
+
+
+//       });
+//       $(id).addClass('active');
+//       $(id).addClass('in');
+//     }
+
+//   })
+
 });
 
 function spinnerLoader() {
   var height = $('.card-products-cat-wrap').height();
-
   $('.card-products-cat-wrap').height(200);
   $('.card-products-cat-wrap').html('<div class="loader col-md-12 col-xs-12"><span class="loader-block"></span><span class="loader-block"></span><span class="loader-block"></span><span class="loader-block"></span><span class="loader-block"></span><span class="loader-block"></span><span class="loader-block"></span><span class="loader-block"></span><span class="loader-block"></span></div>')
-
 }

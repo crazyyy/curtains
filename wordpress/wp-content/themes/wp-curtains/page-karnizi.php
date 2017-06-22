@@ -131,7 +131,7 @@
                               <?php } else { ?>
                                 <?php $class = ''; ?>
                               <?php } ?>
-                              <li <?php echo $class; ?>><a href="#tab-karnizi-typei<?php echo $i; ?>n<?php echo $n; ?>" data-toggle="tab"><?php the_sub_field('types_title'); ?></a></li>
+                              <li <?php echo $class; ?>><a href="#tab-karnizi-type<?php echo $n; ?>" data-toggle="tab"><?php the_sub_field('types_title'); ?></a></li>
                             <?php $n++; endwhile; ?>
                           </ul>
 
@@ -143,7 +143,7 @@
                               <?php } else { ?>
                                 <?php $class = 'tab-pane fade'; ?>
                               <?php } ?>
-                              <div class="<?php echo $class; ?>" id="#tab-karnizi-typei<?php echo $i; ?>n<?php echo $n; ?>">
+                              <div class="<?php echo $class; ?>" id="tab-karnizi-type<?php echo $n; ?>">
                                 <?php the_sub_field('types_descr'); ?>
                               </div>
                             <?php $n++; endwhile; ?>

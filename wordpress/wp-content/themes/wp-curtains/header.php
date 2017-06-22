@@ -44,7 +44,7 @@
                   <p><small>+375 (29)</small> 234-26-51 </p>
                 </div>
               </div>
-              <div class="block block--like"><a href="#"><i class="ic ic-heart"></i></a></div>
+              <div class="block block--like"><a href="<?php echo home_url(); ?>/wishlist.htm"><i class="ic ic-heart"></i></a></div>
             </div><!--  end h-top-info -->
 
             <div class="clearfix"></div>

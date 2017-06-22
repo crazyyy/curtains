@@ -135,7 +135,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZF31krTQH_5QnEpdIsEgmsBV-Iy884rE"></script>
   <script src="<?php echo get_template_directory_uri(); ?>/js/jquery-ui.min.js"></script>
   <script src="<?php echo get_template_directory_uri(); ?>/js/ekko-lightbox.js"></script>
-  <script src="<?php echo get_template_directory_uri(); ?>/js/main.js"></script>
+  <script src="<?php echo get_template_directory_uri(); ?>/js/main.js?ver=1"></script>
 
 </body>
 </html>

@@ -1409,15 +1409,17 @@ p.text:not(:last-of-type) {
   }
   img {
     width: 100%;
+    min-height: 100%;
 
-    -webkit-transition: .4s;
-         -o-transition: .4s;
-            transition: .4s;
+    transition: .4s;
   }
   .img {
     position: relative;
 
     overflow: hidden;
+    overflow: hidden;
+
+    height: 200px;
   }
   .date {
     font-size: 25px;
@@ -3092,6 +3094,12 @@ p.text:not(:last-of-type) {
   position: relative;
 
   display: block;
+  overflow: hidden;
+
+  height: 200px;
+  img {
+    min-height: 100%;
+  }
 }
 
 .card-product__img {
@@ -3103,9 +3111,7 @@ p.text:not(:last-of-type) {
     margin-top: -21px;
     margin-left: -20px;
 
-    -webkit-transition: .4s;
-         -o-transition: .4s;
-            transition: .4s;
+    transition: .4s;
 
     opacity: 0;
   }
@@ -3120,14 +3126,27 @@ p.text:not(:last-of-type) {
     transition: .4s;
 
     opacity: 0;
+    &.liked {
+      &:hover {
+        transform: scale(1);
+      }
+    }
+    &:hover {
+      transform: scale(1.1);
+    }
   }
-  &:hover .like {
-    z-index: 1;
+  &:hover {
+    .like {
+      z-index: 1;
 
-    opacity: 1;
+      opacity: 1;
+    }
   }
-  .like:hover {
-    transform: scale(1.1);
+  &.card-product__img--liked {
+    .liked {
+            opacity: 1;
+      transform: scale(1);
+    }
   }
 }
 

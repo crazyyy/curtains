@@ -82,7 +82,7 @@
                   if ( have_posts() ) : while ( have_posts() ) : the_post();
                 ?>
 
-                  <div id="post-<?php the_ID(); ?>" class="col-xs-6 col-md-4 nopadding card-product__img card-product__img--cat">
+                  <div id="post-<?php the_ID(); ?>" class="col-xs-6 col-md-4 nopadding card-product__img card-product__img--cat" data-id="<?php the_ID(); ?>">
                     <a href="<?php the_permalink(); ?>">
                       <?php if ( has_post_thumbnail()) { ?>
                         <img src="<?php echo the_post_thumbnail_url('medium'); ?>" title="<?php the_title(); ?>" alt="<?php the_title(); ?>" />

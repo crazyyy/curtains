@@ -38,7 +38,7 @@ function wpeStyles()  {
   wp_dequeue_style('fancybox');
   wp_dequeue_style('wp_dequeue_style');
 
-  wp_register_style('wpeasy-style', get_template_directory_uri() . '/css/main.css', array(), '1.0', 'all');
+  wp_register_style('wpeasy-style', get_template_directory_uri() . '/css/main.css', array(), '1.3', 'all');
   wp_enqueue_style('wpeasy-style'); // Enqueue it!
 }
 
@@ -58,7 +58,7 @@ function wpeHeaderScripts() {
     wp_deregister_script( 'jquery-form' );
 
     //  Load footer scripts (footer.php)
-    wp_register_script('wpeScripts', get_template_directory_uri() . '/js/scripts.js', array(), '1.0.0', true);
+    wp_register_script('wpeScripts', get_template_directory_uri() . '/js/scripts.js', array(), '1.3.0', true);
     wp_enqueue_script('wpeScripts');
 
   }
@@ -1647,7 +1647,7 @@ add_action('wp_ajax_nopriv_get_prices_and_id', 'get_prices_and_id'); // not real
 
 function get_ranged() {
 
-$posts = $_GET['ids'];
+  $posts = $_GET['ids'];
 
   // args
   $args = array(
@@ -1694,4 +1694,92 @@ $posts = $_GET['ids'];
 add_action('wp_ajax_get_ranged', 'get_ranged');
 add_action('wp_ajax_nopriv_get_ranged', 'get_ranged'); // not really needed
 
+add_action( 'wp_ajax_set_my_cookie', 'set_my_cookie' );
+add_action('wp_ajax_nopriv_set_my_cookie', 'set_my_cookie'); // not really needed
+function set_my_cookie() {
+
+  $cookie_id = $_GET['id'];
+  $id_in_cookie = $_COOKIE['post_ids'];
+
+  if(!isset($_COOKIE['post_ids'])) {
+    $cookie_array = $cookie_id;
+  } else {
+    $test_array = explode(" ", $id_in_cookie);
+
+    if (in_array($cookie_id, $test_array)) {
+      $cookie_array = $id_in_cookie;
+    } else {
+      $cookie_array = $id_in_cookie . ', ' . $cookie_id;
+    }
+  }
+
+  $path = parse_url(get_option('siteurl'), PHP_URL_PATH);
+  $host = parse_url(get_option('siteurl'), PHP_URL_HOST);
+  $expiry = strtotime('+1 month');
+  setcookie('post_ids', $cookie_array, $expiry, $path, $host);
+
+  if(!isset($_COOKIE['post_ids'])) {
+    echo "The cookie: post_id is not set.";
+  } else {
+    echo "The cookie is set.";
+    echo "Value of cookie: " . $_COOKIE['post_ids'];
+  }
+
+  wp_die();
+}
+
+// Same handler function...
+add_action( 'wp_ajax_get_my_cookie', 'get_my_cookie' );
+add_action( 'wp_ajax_nopriv_get_my_cookie', 'get_my_cookie' );
+function get_my_cookie() {
+
+
+
+  $id_in_cookie = $_COOKIE['post_ids'];
+
+  $posts = explode(" ", $id_in_cookie);
+
+$output = '';
+
+  $args = array(
+    'post_type' => 'product',
+    'showposts' => 100,
+    'orderby' => 'ASC',
+    'post__in' => $posts,
+
+  );
+
+  // query
+  $the_query = new WP_Query( $args );
+
+  if( $the_query->have_posts() ):
+    while( $the_query->have_posts() ) : $the_query->the_post();
+
+      if ( has_post_thumbnail()) {
+        $post_thumbnail_id = get_post_thumbnail_id( $post );
+        $image = '<img src="'. wp_get_attachment_image_url( $post_thumbnail_id, "medium" ) .'" title="'. get_the_title() .'" alt="'. get_the_title() .'" />';
+      } else {
+        $image = '<img src="'. catchFirstImage() .'" title="'. the_title() .'" alt="'. the_title() .'" />';
+      }
+      if( get_field('sale') ) {
+        $action = '<span class="action upper fira-bold">НА АКЦИИ</span>';
+      } else {
+        $action = '';
+      }
+
+      $output = $output .'<div id="post-'. get_the_ID() .'" class="col-xs-6 col-md-4 nopadding card-product__img card-product__img--cat">
+        <a href="'. get_the_permalink() .'">'. $image .'
+          '. $action .'
+          <span class="num upper fira-bold">'. get_the_title() .'</span>
+          <i class="ic ic-loop"></i>
+        </a>
+      </div><!-- end card-product__img -->';
+    endwhile;
+  endif;
+
+  // Reset Query
+  wp_reset_query();
+  die($output);
+
+}
 ?>
